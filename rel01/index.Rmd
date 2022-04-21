@@ -47,5 +47,25 @@ Descrever as ideias básicas sobre o ambiente R:
 
 Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
 
-## Como .
+## Como instalar o R e o RStudio
+  - [Instalação do R](https://cran.r-project.org/bin/windows/base/)
+  - [Instalação do RStudio](https://rstudio.com/products/rstudio/download/#download)
 
+
+## Diferenças entre o R e a IDE RStudio
+  - Ao iniciarmos o R, ele já estará pronto para linhas de comandos serem inseridas. Suas janelas se sobrepõem, esta é a principal desvantagem do R.
+  - O RStudio apresenta quatro quadrantes como padrão para que fique mais fácil a utilização do R. Dessa forma, essa divisão, torna-se muito mais organizada para a realização de atividades.
+  
+  - [Interface do R](interfacer.jpg)
+  - [Interface do RStudio](interfacerstudio.jpg)
+
+
+## Como o R trabalha
+Ele possui três princípios:
+
+  - **Princípio do objeto**: tudo que existe em R é um objeto.
+  - **Princípio da função**: tudo o que acontece no R é uma chamada de função.
+  - **Princípio da interface**: interfaces para outros programas são parte do R.
+
+
+   ![](esquemar.jpg)
