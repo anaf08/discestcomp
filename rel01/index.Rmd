@@ -69,3 +69,74 @@ Ele possui três princípios:
 
 
    ![](esquemar.jpg)
+
+
+## Comandos Elementares
+Divididos em: **expressões** e **atribuições**.
+  
+  - **Expressões**: o R avalia a expressão e imprime o resultado. Caso apareça mensagens indicando "erro", significa que algum elemento inserido na função não foi reconhecido pelo R.
+  
+  (adicionar conta)
+
+  - **Atribuições**: um nome é relacionado a um objeto, podendo ser recuperado.
+  
+  (adicionar texto)
+  
+## Objetos
+Reconhecemos um objeto como uma entidade no ambiente R cujas características internas contêm as informações necessárias para explicar sua estrutura e conteúdo. Características essas que são nomeadas atributos.
+
+  - **Associando um nome a um objeto**
+
+    > x <- 9
+    
+    >9 -> x
+
+    - Atribuição de comando;
+    - Utilizar: <-, ou seja, **<** + **-**;
+    - Utilizar o símbolo **=** apenas para definir argumentos de uma função;
+
+
+  - **Nomes sintáticos e Não sintáticos**
+
+    - Letras, dígitos, **.** e _;
+    
+## Manipução com objetos
+
+
+## Importação de dados
+O primeiro passo para a importação é fazer uma preparação, por isso seguimos alguns padrões: 
+  
+  - Evitar símbolos fora do padrão afanumérico;
+  - Evitar misturas de letras maiúsculas e minúsculas, sempre lembrando dos padrões de nomenclatura do R;
+  - Deixar a formatação da apresentação de dados em arquivos específicos, por isso devemos evitar comentários ou informações que não se relacionem com o banco de dados;
+  - Evitar palavras longas ou compostas;
+  
+  **Importando Dados**
+  
+  - Função responsável: scan();
+  
+  > x <- scan()
+  
+  - Após isso seguiremos o seguinte passo-a-passo:
+    - Depois e executarmos o comando acima e apertar ENTER aparecerá no console 1: em que devemos digitar o primeiro valor de x;
+    - Para 2: digitar o segundo valor de x;
+    - Seguindo assim até todos os valores de x serem colocados, ao final, apertamos duas vezes a tecla ENTER para sair do comando;
+
+
+Normalmente utilizamos programas para criar o banco de dados e  depois o R fará a leitura, porém o formato desse tipo de arquivo não é compatível com o R. Uma outra maneira é realizar a importação de dados pelo próprio R , extensão _RData_.
+
+Com o arquivo já pronto, a leitura dele pode ser feita em poucos passos:
+  
+  [PASSO-A-PASSO](importacaodados.jpg)
+  
+  
+  1.[Escolher o arquivo](imp-exp2.jpg)
+  2.
+  
+  
+  
+
+  
+  
+  
+  
