@@ -1,0 +1,15 @@
+---
+title: "Ana Flavia Machado Muniz Andrade"
+image: "logo.jpg"
+links:
+  - label: GitHub
+    url: "https://github.com/anaf08"
+  - label: Email
+    url: "mailto:andradeanaflavia95@gmail.com"
+  - label: Linkedin
+    url: "www.linkedin.com/in/anaflaviaandrade"
+output:
+  postcards::jolla
+---
+ 
+Descrição sobre o aluno(a)!
