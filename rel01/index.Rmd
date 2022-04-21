@@ -127,11 +127,14 @@ Normalmente utilizamos programas para criar o banco de dados e  depois o R fará
 
 Com o arquivo já pronto, a leitura dele pode ser feita em poucos passos:
   
-  [PASSO-A-PASSO](importacaodados.jpg)
+  [Usando RStudio para importar dados](importacaodados.jpg)
   
   
   1.[Escolher o arquivo](imp-exp2.jpg)
-  2.
+  
+  2.[Configurar a leitura do banco de dados](imp-exp3.jpg)
+  
+  
   
   
   
