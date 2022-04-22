@@ -56,8 +56,9 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   - Ao iniciarmos o R, ele já estará pronto para linhas de comandos serem inseridas. Suas janelas se sobrepõem, esta é a principal desvantagem do R.
   - O RStudio apresenta quatro quadrantes como padrão para que fique mais fácil a utilização do R. Dessa forma, essa divisão, torna-se muito mais organizada para a realização de atividades.
   
-  - [Interface do R](interfacer.jpg)
-  - [Interface do RStudio](interfacerstudio.jpg)
+    ![Interface do R](interfacer.jpg)
+   
+    ![Interface do RStudio](interfacerstudio.jpg)
 
 
 ## Como o R trabalha
@@ -81,7 +82,9 @@ Divididos em: **expressões** e **atribuições**.
   - **Atribuições**: um nome é relacionado a um objeto, podendo ser recuperado.
   
   (adicionar texto)
-  
+
+É importante lembrar que se o comando inicia com o símbolo **#**, significa que temos um comentário, o qual é apenas impresso na tela.
+
 ## Objetos
 Reconhecemos um objeto como uma entidade no ambiente R cujas características internas contêm as informações necessárias para explicar sua estrutura e conteúdo. Características essas que são nomeadas atributos.
 
@@ -135,6 +138,12 @@ Com o arquivo já pronto, a leitura dele pode ser feita em poucos passos:
   2. ![Configurar a leitura do banco de dados](imp-exp3.jpg)
   
   3. ![Importar dados, conjunto de dados e ligação entre nome e objeto no ambiente global](imp-exp4.jpg)
+  
+
+## Pacotes
+  - Instalação
+  - Como usar 
+  
   
   
   
