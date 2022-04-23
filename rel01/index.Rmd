@@ -131,7 +131,8 @@ Reconhecemos um objeto como uma entidade no ambiente R cujas características in
       
 
 ## Manipução com objetos
-**Vetores**
+
+### **Vetores**
   
   - Numéricos: 
     - Inteiro;
@@ -139,9 +140,28 @@ Reconhecemos um objeto como uma entidade no ambiente R cujas características in
   - Lógico;
   - Caractere;
   
-    - **Escalares**
-    
+**Escalares**
+  
+  - Vetores lógicos assumem valores: TRUE ou FALSE;
+  - Em valores especiais, chamados pontos flutuantes temos: `> Inf `, ` -Inf ` e ` NaN `;
+  - Vetores númericos (`double`): respresentados de forma decima, científica ou hexadecimal;
+  - Vetores numéricos (`integer`): letra **L** ao final do número inteiro (2L, 3.23L, 6L, etc );
+  - Carcteres: palavras, números ou caracteres especiais são escritos entre aspas ou aspas simples ( "Ana Flavia", "G", 'Ana Flavia', 'B' );
+  
+**Vetores longos**
 
+Utiliza- se a função c():
+  
+  `vetor.num <- c(1, 2, 3, 4, 5); vetor.num `
+  
+  `[1] 1 2 3 4 5`
+  
+O vetor de modo `double` requer mais memória que o `integer`. Porém essa função apresenta o recurso de **abreviação alternativa** que faz com que a sequência não seja armazenada por completo. Sendo assim, a ocupação de memória, para qualquer tamanho de sequência, será a mesma. 
+
+**Matrizes Bidimensionais**
+
+
+  
 ## Importação de dados
 O primeiro passo para a importação é fazer uma preparação, por isso seguimos alguns padrões: 
   
@@ -177,7 +197,23 @@ Com o arquivo já pronto, a leitura dele pode ser feita em poucos passos:
   
 
 ## Pacotes
+
+Um pacote é a unidade básica para compartilhamento de um código.
+ 
+Quantidade: [19002](https://cran.r-project.org/web/packages/) (23/04/2022);
+
+Tipos: _.tar.gz_, _.zip_, etc...
+
+Onde: [CRAN](https://cran.r-project.org/mirrors.html), [GitHub](https://github.com/), etc...
+
+  ![Esqueleto de um pacote](esquelto.jpg)
+  
+ 
   - Instalação
+    - Via [CRAN](https://cran.r-project.org/)
+     
+    ` install.packpages (pkgs = "nome do pacote")`
+    
   - Como usar 
   
   
