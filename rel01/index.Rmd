@@ -77,18 +77,28 @@ Divididos em: **expressões** e **atribuições**.
   
   - **Expressões**: o R avalia a expressão e imprime o resultado. Caso apareça mensagens indicando "erro", significa que algum elemento inserido na função não foi reconhecido pelo R.
   
-  (adicionar conta)
+  `8 + 9`
+  
+  `[1] 17`
 
   - **Atribuições**: um nome é relacionado a um objeto, podendo ser recuperado.
   
-  (adicionar texto)
+  ` meu nome <- "Ana Flavia"`
+  
+  `[1] Ana Flavia`
 
 É importante lembrar que se o comando inicia com o símbolo **#**, significa que temos um comentário, o qual é apenas impresso na tela.
 
   - **Execução de comandos**
   Podemos inserir o comando de duas formas, uma linha por vez ou, se for na mesma linha, sepramos por **;**.
   
-  (adiconar exemplo)
+  `meu nome <- "Ana Flavia" #Criamos e associamos um nome ao objeto 
+  meu nome #Imprimimos o objeto`
+  
+  
+  `#Tudo em uma linha 
+  meu nome <- "Ana Flavia"; meu_nome`
+  
   
   Caso o comando desejado seja muito grande, e não cabe em apenas uma linha, utilizamos o símbolo **+** após a primeira linha  utilizada. 
 
@@ -160,8 +170,38 @@ O vetor de modo `double` requer mais memória que o `integer`. Porém essa funç
 
 **Matrizes Bidimensionais**
 
+Nesse caso utilizamos um atributo chamado `dim`:
 
+  `dim (x) <- c(2, 3) # 2 x 3 = 6 (Comp do vetor)`
   
+  `# attr(x, "dim") <- c(2, 3)`
+  
+       
+            [,1] [,2] [,3]
+       [1,]    1    3    5
+       [2,]    2    4    6
+
+**Matriz Multidimensional**
+
+A única diferença, é que neste caso temos um vetor atômico de mais de duas dimensões.
+
+  `# Adicionando o atributo dim`
+  `dim(x) <- c(2, 3, 2) # 2 x 3 x 2 = 12 (Comp do vetor)`
+  `attr(x, dim) <- c(2, 3 ,2)`
+  
+    , , 1
+
+            [,1] [,2] [,3]
+       [1,]    1    3    5
+       [2,]    2    4    6
+
+    , , 2
+
+            [,1] [,2] [,3]
+       [1,]    7    9   11
+       [2,]    8   10   12
+  
+
 ## Importação de dados
 O primeiro passo para a importação é fazer uma preparação, por isso seguimos alguns padrões: 
   
@@ -206,12 +246,11 @@ Tipos: _.tar.gz_, _.zip_, etc...
 
 Onde: [CRAN](https://cran.r-project.org/mirrors.html), [GitHub](https://github.com/), etc...
 
-O objetico de um pacote é facilitar e otimizar atividades do dia-a-dia na utilização da linguagem [R](https://www.r-project.org/), neste caso. Ademais, a experiência de utilizar o pacote possui maior poder de disseminação.
+O objetivo de um pacote é facilitar e otimizar atividades do dia-a-dia na utilização da linguagem [R](https://www.r-project.org/), neste caso. Ademais, a experiência de utilizar o pacote possui maior poder de disseminação.
 
 
-  ![Esqueleto de um pacote](esqueleto.jpg)
+  ![Esqueleto de um pacote](esqueleto.jpg){width=60%}
   
-
   - **Instalação**
     - Via [CRAN](https://cran.r-project.org/)
      
@@ -222,6 +261,20 @@ O objetico de um pacote é facilitar e otimizar atividades do dia-a-dia na utili
   Após a instalação é necessário disponibilizar e inserir o pacote no caminho de busca, para isso utilizamos as funções `library()` ou `require()`.
   
   `library ("nome do arquivo")`
+  
+Para acessar as funções do pacote, utilizamos `nome_pacote::nome_função`.Faremos da seguinte maneira:
+ 
+  `# Caminho de busca`
+  
+  `> search()`
+  
+  `# Carregando e chamando a função de um pacote`
+  
+  `> nome_pacote::nome_função`
+  
+  
+
+  
   
   
   
