@@ -206,14 +206,14 @@ Tipos: _.tar.gz_, _.zip_, etc...
 
 Onde: [CRAN](https://cran.r-project.org/mirrors.html), [GitHub](https://github.com/), etc...
 
-  ![Esqueleto de um pacote](esquelto.jpg)
+  ![Esqueleto de um pacote](esqueleto.jpg){width = 50%}
   
- 
+
   - Instalação
     - Via [CRAN](https://cran.r-project.org/)
      
     ` install.packpages (pkgs = "nome do pacote")`
-    
+  
   - Como usar 
   
   
