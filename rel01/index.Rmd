@@ -85,6 +85,18 @@ Divididos em: **expressões** e **atribuições**.
 
 É importante lembrar que se o comando inicia com o símbolo **#**, significa que temos um comentário, o qual é apenas impresso na tela.
 
+  - **Execução de comandos**
+  Podemos inserir o comando de duas formas, uma linha por vez ou, se for na mesma linha, sepramos por **;**.
+  
+  (adiconar exemplo)
+  
+  Caso o comando desejado seja muito grande, e não cabe em apenas uma linha, utilizamos o símbolo **+** após a primeira linha  utilizada. 
+
+  - **Chamada e correção de comandos anteriores**
+    - Para recuperar um comando: teclas das setas para cima e para baixo.
+    - Alterar caracteres: teclas das setas para direita e para esquerda.
+    - Remover caracteres: _delete_ ou _backsapce_ do teclado.
+    
 ## Objetos
 Reconhecemos um objeto como uma entidade no ambiente R cujas características internas contêm as informações necessárias para explicar sua estrutura e conteúdo. Características essas que são nomeadas atributos.
 
@@ -102,9 +114,33 @@ Reconhecemos um objeto como uma entidade no ambiente R cujas características in
   - **Nomes sintáticos e Não sintáticos**
 
     - Letras, dígitos, **.** e _;
+  
+  - **Atributos**
+  
+  São um conjunto de informações que caracterizam o objeto.
+  Além disso, todos os obejtos do R possuem uma **classe**, em que as funções podem ter diferentes comportamentos 
+  
+  - **Tipos de objetos**
+    - **Vetores atômicos**:
+      - Lógicos,numéricos e caracteres;
+      - Matrizes unidimensionais ( _Matrix_ ) e multidimensionais ( _Arrays_);
     
-## Manipução com objetos
+    - **Vetores em lista**:
+      - Listas ( _Lists_ );
+      - Quadro de dados ( _Data frames_ );
+      
 
+## Manipução com objetos
+**Vetores**
+  
+  - Numéricos: 
+    - Inteiro;
+    - Real;
+  - Lógico;
+  - Caractere;
+  
+    - **Escalares**
+    
 
 ## Importação de dados
 O primeiro passo para a importação é fazer uma preparação, por isso seguimos alguns padrões: 
