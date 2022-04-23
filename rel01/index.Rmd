@@ -206,15 +206,26 @@ Tipos: _.tar.gz_, _.zip_, etc...
 
 Onde: [CRAN](https://cran.r-project.org/mirrors.html), [GitHub](https://github.com/), etc...
 
-  ![Esqueleto de um pacote](esqueleto.jpg){width = 50%}
+O objetico de um pacote é facilitar e otimizar atividades do dia-a-dia na utilização da linguagem [R](https://www.r-project.org/), neste caso. Ademais, a experiência de utilizar o pacote possui maior poder de disseminação.
+
+
+  ![Esqueleto de um pacote](esqueleto.jpg)
   
 
-  - Instalação
+  - **Instalação**
     - Via [CRAN](https://cran.r-project.org/)
      
     ` install.packpages (pkgs = "nome do pacote")`
   
-  - Como usar 
+  - **Como usar** 
+  
+  Após a instalação é necessário disponibilizar e inserir o pacote no caminho de busca, para isso utilizamos as funções `library()` ou `require()`.
+  
+  `library ("nome do arquivo")`
+  
+  
+  
+  
   
   
   
