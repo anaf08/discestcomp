@@ -117,13 +117,13 @@ Reconhecemos um objeto como uma entidade no ambiente R cujas características in
     >9 -> x
 
     - Atribuição de comando;
-    - Utilizar: <-, ou seja, **<** + **-**;
+    - Utilizar: <-, ou seja, **<** + **-** ;
     - Utilizar o símbolo **=** apenas para definir argumentos de uma função;
 
 
   - **Nomes sintáticos e Não sintáticos**
 
-    - Letras, dígitos, **.** e _;
+    - Letras, dígitos, **.** e _ ;
   
   - **Atributos**
   
@@ -229,11 +229,11 @@ Com o arquivo já pronto, a leitura dele pode ser feita em poucos passos:
   [Usando RStudio para importar dados](importacaodados.jpg)
   
   
-  1. ![Escolher o arquivo](imp-exp2.jpg)
+   ![Escolher o arquivo](imp-exp2.jpg)
   
-  2. ![Configurar a leitura do banco de dados](imp-exp3.jpg)
+   ![Configurar a leitura do banco de dados](imp-exp3.jpg)
   
-  3. ![Importar dados, conjunto de dados e ligação entre nome e objeto no ambiente global](imp-exp4.jpg)
+   ![Importar dados, conjunto de dados e ligação entre nome e objeto no ambiente global](imp-exp4.jpg)
   
 
 ## Pacotes
@@ -249,7 +249,7 @@ Onde: [CRAN](https://cran.r-project.org/mirrors.html), [GitHub](https://github.c
 O objetivo de um pacote é facilitar e otimizar atividades do dia-a-dia na utilização da linguagem [R](https://www.r-project.org/), neste caso. Ademais, a experiência de utilizar o pacote possui maior poder de disseminação.
 
 
-  ![Esqueleto de um pacote](esqueleto.jpg){width=60%}
+  ![Esqueleto de um pacote](esqueleto.jpg){width=50%}
   
   - **Instalação**
     - Via [CRAN](https://cran.r-project.org/)
@@ -272,20 +272,7 @@ Para acessar as funções do pacote, utilizamos `nome_pacote::nome_função`.Far
   
   `> nome_pacote::nome_função`
   
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
-  
-  
-  
+    
   
