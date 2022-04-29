@@ -39,6 +39,7 @@ Descrever sobre a criação de relatórios pelo RStudio:
  - Estrutura base;
  - Introdução ao RMarckdown;
  - Sincronizar alterações;
+ - Página online do repositório;
   
 # Apresentação do relatório
 
@@ -111,7 +112,14 @@ Esses pacotes auxiliam na produção dos relatórios com suas funções, possibi
 ```
 Outra maneira de fazermo esses passos é no próprio GitHub, no terceiro quadrante, opção _Git_  e logo depois no botão _Commit_(Passo 1).Abrirá uma nova janela e no lado esquerdo os arquivos que foram alterados, você deve selcionar aqueles que deseja subir para o GitHub, teremos um espaço " _commit message_ " para fazer o comentário. Clicar no botão _Commit_ e depois em _Push_(Passo 2), finalizado !!!
 
-   ![Passo 1](commit1.jpg){width=50%}
-   ![Passo 2](commit2.png){width=50%}
+  - ![Passo 1](commit1.jpg){width=50%}
+  - ![Passo 2](commit2.png){width=50%}
   
+## Página online do repositório
+
+Com seu GitHub aberto, vamos seguir o seguinte passo a passo:
+  
+  - _Settings_ > _Pages_ > _Select Bench:main_ > _Select Folder:root_ > SAVE > adicionar seu nome (ex: https://anaf08.github.io/discestcomp/);
+  
+  É importante lembrar que o arquivo será um HTML e devemos salva-lo com `index`, caso contrário drá erro.
  
