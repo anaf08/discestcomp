@@ -38,7 +38,8 @@ Descrever sobre a criação de relatórios pelo RStudio:
  - Instalar pacotes (no R);
  - Estrutura base;
  - Introdução ao RMarckdown;
-
+ - Sincronizar alterações;
+  
 # Apresentação do relatório
 
 Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
@@ -80,3 +81,18 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   - Inserir imagens: `![nomenclatura ou anotação](link)`;
     - Para aumentar ou diminuir a imagem basta colocar no final: `{width=xx%}`;
   - Nota de rodapé: `Ana Flavia^[Aluna de Engenharia Civil da UFSJ]`;
+  
+## Sincronizar alterações
+
+  - Pela aba do _Terminaç Studio_: 
+    - Adcionar alterações localmente;
+    - Comentar;
+    - Enviar ao repositório as alterações;
+    - Para tudo isso ser feito, inserimos na ordem:
+
+```
+   $ git add .
+   $ git commit -m "cometario"
+   $ git push
+
+```
