@@ -79,7 +79,7 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   - Para escrever em negrito: (`**negrito**` ou ` __negrito__`) **Negrito**;
   - Inserir link: `[inserir aqui uma nomenclatura ou anotação referente ao link](nome_imagem)`;
   - Inserir imagens: `![nomenclatura ou anotação](link)`;
-    - Para aumentar ou diminuir a imagem basta colocar no final: `{width=xx%}`;
+    - Para aumentar ou diminuir a imagem, basta colocar ao final: `{width=xx%}`;
   - Nota de rodapé: `Ana Flavia^[Aluna de Engenharia Civil da UFSJ]`;
   
 ## Sincronizar alterações
@@ -96,3 +96,4 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
    $ git push
 
 ```
+Outra maneira de fazermos esses passos é no próprio GitHub, no terceiro quadrante, opção _Git_  e logo depois no botão _Commit_. Abrirá uma nova janela e no lado esquerdo os arquivos que foram alterados, você deve selcionar aqueles que deseja subir para o GitHub, teremos um espaço " _commit message_ " para fazer o comentário. Clicar no botão _Commit_ e depois em _Push_ , finalizado !!! 
