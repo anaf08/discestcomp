@@ -52,7 +52,8 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   
   - Para criar o cadastro, devemos acessar: (https://github.com/)
   
-  - [Clicar em Sign up]()
+ ![Clicar em Sign up](git.jpg)
+  
   - Definir email e senha;
   - Realizar as demais definições;
 
@@ -97,9 +98,9 @@ Esses pacotes auxiliam na produção dos relatórios com suas funções, possibi
 ## Sincronizar alterações
 
   - Pela aba do _Terminaç Studio_: 
-    - Adcionar alterações localmente;
-    - Comentar;
-    - Enviar ao repositório as alterações;
+    - `git add .` : Adcionar alterações localmente;
+    - `git commit -m "..." `: Comentar;
+    - `git push`: Enviar ao repositório as alterações;
     - Para tudo isso ser feito, inserimos na ordem:
 
 ```
