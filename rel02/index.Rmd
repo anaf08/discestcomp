@@ -52,7 +52,7 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   
   - Para criar o cadastro, devemos acessar: (https://github.com/)
   
- ![Clicar em Sign up](git.jpg)
+ ![Clicar em Sign up](git.jpg){width=50%}
   
   - Definir email e senha;
   - Realizar as demais definições;
@@ -111,10 +111,7 @@ Esses pacotes auxiliam na produção dos relatórios com suas funções, possibi
 ```
 Outra maneira de fazermo esses passos é no próprio GitHub, no terceiro quadrante, opção _Git_  e logo depois no botão _Commit_. Abrirá uma nova janela e no lado esquerdo os arquivos que foram alterados, você deve selcionar aqueles que deseja subir para o GitHub, teremos um espaço " _commit message_ " para fazer o comentário. Clicar no botão _Commit_ e depois em _Push_ , finalizado !!!
 
-  ![](commit1.jpg)
-  
- 
- 
-  ![](commit2.png)
+  ![](commit1.jpg){width=50%}
+  ![](commit2.png){width=50%}
   
  
