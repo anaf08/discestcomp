@@ -72,3 +72,11 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
       - File > New Project… > Version Control > Git > Repository URL > insira o _https_ do repositório Git;
       - Escolher o diretório onde o repositório será clonado no computador em: _“Create project as subdirectory of:”_. Lembre-se de escolher diretórios (pastas) com nomes sem acento, com espaços. 
   
+## Introdução a RMarckdown
+  
+  - Para escrever em itálico: (`*itálico*`) *itálico*;
+  - Para escrever em negrito: (`**negrito**` ou ` __negrito__`) **Negrito**;
+  - Inserir link: `[inserir aqui uma nomenclatura ou anotação referente ao link](nome_imagem)`;
+  - Inserir imagens: `![nomenclatura ou anotação](link)`;
+    - Para aumentar ou diminuir a imagem basta colocar no final: `{width=xx%}`;
+  - Nota de rodapé: `Ana Flavia^[Aluna de Engenharia Civil da UFSJ]`;
