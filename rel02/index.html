@@ -366,9 +366,8 @@ Objetivo</a></li>
 <li><a href="#instalação-do-git"><span class="toc-section-number">2.1</span> Instalação do Git</a></li>
 <li><a href="#cadastro-no-github"><span class="toc-section-number">2.2</span> Cadastro no GitHub</a></li>
 <li><a href="#instalar-pacotes-no-r"><span class="toc-section-number">2.3</span> Instalar pacotes (no R)</a></li>
-<li><a href="#estrutura-base"><span class="toc-section-number">2.4</span> Estrutura base</a></li>
-<li><a href="#introdução-a-rmarckdown"><span class="toc-section-number">2.5</span> Introdução a RMarckdown</a></li>
-<li><a href="#sincronizar-alterações"><span class="toc-section-number">2.6</span> Sincronizar alterações</a></li>
+<li><a href="#introdução-a-rmarckdown"><span class="toc-section-number">2.4</span> Introdução a RMarckdown</a></li>
+<li><a href="#sincronizar-alterações"><span class="toc-section-number">2.5</span> Sincronizar alterações</a></li>
 </ul></li>
 </ul>
 </div>
@@ -413,9 +412,23 @@ serem acessíveis.</p>
 <div id="instalar-pacotes-no-r" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Instalar pacotes (no
 R)</h2>
-</div>
-<div id="estrutura-base" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Estrutura base</h2>
+<p>Podemos instlar os pacotes <code>rmarkdown</code>,
+<code>knitr</code>, <code>tinytex</code>, <code>postcard</code> via
+RStudio. Todas as instalações podem ser feitas de uma só vez da seguinte
+forma:</p>
+<pre><code># &quot;nomeando&quot; os pacotes
+
+pkgs &lt;- c(&quot;rmarkdown&quot;, &quot;knitr&quot;, &quot;tinytex&quot;, &quot;postcard&quot;)
+
+# Para instalar
+
+install.packages(pkgs)
+
+</code></pre>
+<p>Esses pacotes auxiliam na produção dos relatórios com suas funções,
+possibilitando criação de textos em HTML, compilações em LaTex e
+impressão em PDF, visualização de arquivos Markdown no R, entre outros.
+## Estrutura base</p>
 <ul>
 <li>Usando o RStudio
 <ul>
@@ -444,8 +457,8 @@ diretórios (pastas) com nomes sem acento, com espaços.</li>
 </ul></li>
 </ul>
 </div>
-<div id="introdução-a-rmarckdown" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> Introdução a
+<div id="introdução-a-rmarckdown" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Introdução a
 RMarckdown</h2>
 <ul>
 <li>Para escrever em itálico: (<code>*itálico*</code>)
@@ -463,8 +476,8 @@ RMarckdown</h2>
 <code>Ana Flavia^[Aluna de Engenharia Civil da UFSJ]</code>;</li>
 </ul>
 </div>
-<div id="sincronizar-alterações" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Sincronizar
+<div id="sincronizar-alterações" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Sincronizar
 alterações</h2>
 <ul>
 <li>Pela aba do <em>Terminaç Studio</em>:

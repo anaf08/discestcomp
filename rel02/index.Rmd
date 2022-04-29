@@ -60,7 +60,19 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
   
 ## Instalar pacotes (no R)
 
+Podemos instlar os pacotes `rmarkdown`, `knitr`, `tinytex`, `postcard` via RStudio. Todas as instalações podem ser feitas de uma só vez da seguinte forma:
+```
+# "nomeando" os pacotes
 
+pkgs <- c("rmarkdown", "knitr", "tinytex", "postcard")
+
+# Para instalar
+
+install.packages(pkgs)
+
+
+```
+Esses pacotes auxiliam na produção dos relatórios com suas funções, possibilitando criação de textos em HTML, compilações em LaTex e impressão em PDF, visualização de arquivos Markdown no R, entre outros.
 ## Estrutura base
 
   - Usando o RStudio 
@@ -96,4 +108,4 @@ Diante do objetivo do relatório apresentaremos nas próximas subseções, os po
    $ git push
 
 ```
-Outra maneira de fazermos esses passos é no próprio GitHub, no terceiro quadrante, opção _Git_  e logo depois no botão _Commit_. Abrirá uma nova janela e no lado esquerdo os arquivos que foram alterados, você deve selcionar aqueles que deseja subir para o GitHub, teremos um espaço " _commit message_ " para fazer o comentário. Clicar no botão _Commit_ e depois em _Push_ , finalizado !!! 
+Outra maneira de fazermos esses passos é no próprio GitHub, no terceiro quadrante, opção _Git_  e logo depois no botão _Commit_. Abrirá uma nova janela e no lado esquerdo os arquivos que foram alterados, você deve selcionar aqueles que deseja subir para o GitHub, teremos um espaço " _commit message_ " para fazer o comentário. Clicar no botão _Commit_ e depois em _Push_ , finalizado !!!
