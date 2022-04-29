@@ -1,7 +1,7 @@
 ---
-title: "Relatório 02"
-author: "Ben Dêivide"
-date: "12/04/2022"
+title: "Relatório 02 - "
+author: "Ana Flavia Machado Muniz Andrade"
+date: "29/04/2022"
 header-includes:
   - \usepackage{titling}
   - \pretitle{\begin{center}
@@ -28,11 +28,47 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 --- 
 
+
 # Objetivo
 
-Descrever o objetivo do relatório!
+Descrever sobre a criação de relatórios pelo RStudio:
+
+ - Instalação Git;
+ - Cadastro no GitHub;
+ - Instalar pacotes (no R);
+ - Estrutura base;
+ - Introdução ao RMarckdown;
 
 # Apresentação do relatório
 
-Aqui será o local para apresentar o material sobre o relatório.
+Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
 
+## Instalação do Git 
+
+  - [Instalar o Git](https://git-scm.com/downloads)
+  
+## Cadastro no GitHub
+  
+  - Para criar o cadastro, devemos acessar: (https://github.com/)
+  
+  - [Clicar em Sign up]()
+  - Definir email e senha;
+  - Realizar as demais definições;
+
+É importante lembrar que seu email e senha devem ser guardados e serem acessíveis.
+  
+## Instalar pacotes (no R)
+
+
+## Estrutura base
+
+  - Usando o RStudio 
+    - Configure: 
+      - _RStudio_ > _Tools_ > _Global Options..._ > _Terminal_ > _General_ > _Shell_ > _New Terminal open with: Git Bash_ > _Apply_ (Botão);
+  - Criar repositório no [GitHub](https://github.com/) da seguinte forma: (ACRESCENTAR)
+  - Criar https desse repositório: 
+    - Entre no repositório > Procure o botão “Code” > Copie o HTTPS . Se considerarmos o nome do repositório como “discestcomp”: (https://anaf08.github.io/discestcomp/)
+    - Clone o repositório em: 
+      - File > New Project… > Version Control > Git > Repository URL > insira o _https_ do repositório Git;
+      - Escolher o diretório onde o repositório será clonado no computador em: _“Create project as subdirectory of:”_. Lembre-se de escolher diretórios (pastas) com nomes sem acento, com espaços. 
+  
