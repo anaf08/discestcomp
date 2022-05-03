@@ -1,7 +1,6 @@
 ---
 title: "Distribuição de probabilidade"
 
-}}"
 author: "Ana Flavia Machado Muniz Andrade"
 date: '2022-05-04'
 output: ioslides_presentation
@@ -11,9 +10,13 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Espaço Amostral
+## Espaço Amostral (Ω)
 
-  - É o conjunto formado por todos os resultados possíveis de um experimento aleatório. Em outras palavras, é o conjunto formado por todos os pontos amostrais de um experimento.
+  - É o conjunto formado por todos os resultados possíveis de um experimento aleatório. Em outras palavras, é o conjunto formado por todos os pontos amostrais de um experimento.Como por exemplo:
+  
+  O **espaço amostral** do experimento "lançamento de um dado" é o conjunto S={1, 2, 3, 4, 5, 6}. Os **pontos amostrais** desse experimento são 1, 2, 3, 4, 5 e 6.
+  
+  ![Experimento](dado.jpg)
 
 
   
