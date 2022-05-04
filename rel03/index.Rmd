@@ -29,28 +29,42 @@ knitr::opts_chunk$set(echo = FALSE)
   
   - No caso de **variáveis contínuas**, as probabilidades são especificadas em termos de intervalos, pois a probabilidade associada a um número específico é zero (não enumerável).
 
-### Distruinuição de Bernoulli
+### **Distribuição de Bernoulli**
 
   - Este modelo probabilístico é caracterizado da seguinte forma:
   
   x=1 sucesso, P(x=1) = "p" (sucesso)
   
   x=0 fracasso, P(x=0) = 1 - p (fracasso)
+  
+  P(**X**=x) = p.^x*(1-p)^(1-x)
+  
+
+
+## Distruibuições Discretas
+
+### **Distribuição Binomial**
+
+### **Distribuição Poisson**
+
+## Distribuições Contínuas
+
+### **Distribuição Normal**
+
+  - A distribuição Normal é em forma de sino, unimodal, simétrica em relação à sua média e tende cada vez mais ao eixo horizontal à medida que se afasta da média.
+  
+  - A probabilidade de uma variável aleatória tomar um valor entre dois pontos quaisquer é igual à área compreendida entre esses dois pontos.
+  
+  - Caracterizada por duas variáveis: **média** e **desvio padrão**.
+  
+  **add equação**
+
+
+
 
   
 
 
-
-
-
-## Slide with Bullets
-
-
-## Slide with R Output
-
-
-
-## Slide with Plot
 
 
 
