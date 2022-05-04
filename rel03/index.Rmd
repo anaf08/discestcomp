@@ -173,15 +173,18 @@ pode ser igual a 0,caso contrário, em que λ > 0. Em notação, X ∼ Poisson(�
   ![](dn.jpg){width=50%}    
   </center>
   
+## Distribuições Contínuas
+
+### **Distribuição Normal**
 ### No R:
   
-  `dnorm () -> fx`
+  `dnorm ()`: densidade de probabilidade de f(x) no ponto;
   
-  `pnorm () -> fx(x)`
+  `pnorm ()`: probabilidade acumulada;
   
-  `qnorm () -> f^-1 (p)`
+  `qnorm ()`: quantil;
   
-  `rnorm ()`
+  `rnorm ()`: amostra aleatória.
   
   
   
