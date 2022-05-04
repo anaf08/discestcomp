@@ -10,14 +10,32 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Espaço Amostral (Ω)
+## Introdução
 
+### **Espaço Amostral**
+  
   - É o conjunto formado por todos os resultados possíveis de um experimento aleatório. Em outras palavras, é o conjunto formado por todos os pontos amostrais de um experimento.Como por exemplo:
   
-  O **espaço amostral** do experimento "lançamento de um dado" é o conjunto S={1, 2, 3, 4, 5, 6}. Os **pontos amostrais** desse experimento são 1, 2, 3, 4, 5 e 6.
+  Dado experimento "lançamento de um dado" o espaço amostral será: S={1, 2, 3, 4, 5, 6}.
   
-  ![Experimento](dado.jpg)
+  - Uma distribuição de probabilidade é um modelo matemático que relaciona um certo valor da variável em estudo com a sua probabilidade de ocorrência.Há dois tipos:
+  
+    - **Distribuições Contínuas**
+    - **Distribuições Discretas**
+    
+## Distribuições Discretas
 
+  - A probabilidade de que a variável  **X**  assuma um valor específico  x  é dada por:  P(**X** = x ) = P( x )
+  
+  - No caso de **variáveis contínuas**, as probabilidades são especificadas em termos de intervalos, pois a probabilidade associada a um número específico é zero (não enumerável).
+
+### Distruinuição de Bernoulli
+
+  - Este modelo probabilístico é caracterizado da seguinte forma:
+  
+  x=1 sucesso, P(x=1) = "p" (sucesso)
+  
+  x=0 fracasso, P(x=0) = 1 - p (fracasso)
 
   
 
@@ -30,13 +48,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Slide with R Output
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+
 
 ## Slide with Plot
 
-```{r pressure}
-plot(pressure)
-```
+
 
