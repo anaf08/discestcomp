@@ -85,13 +85,11 @@ rexponencial <- function(n, lambda) {
 plot(sort(rexponencial(1000, lambda = 1)))
 points(sort(rexp(1000, rate = 1)), col = "red")
 
-<center>
-![](IMAGEM)
-</center>
-
 
 ```
-ADICONAR GRÁFICO
+<center>
+![](Rplot.png)
+</center>
 
 ## Quadratura Gaussina
 
@@ -126,3 +124,4 @@ $weights
 
 
 ```
+## Método de Newton-Raphson
