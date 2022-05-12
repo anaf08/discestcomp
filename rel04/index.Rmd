@@ -95,8 +95,10 @@ points(sort(rexp(1000, rate = 1)), col = "red")
 
 ### Introdução 
 
-  - ADICONAR FÓRMULA (INTEGRAL)
-
+  <center>
+  $\int_{a}^{b}g(x) dx= \int_{a}^{b}w(x)f(x) dx ~ \sum_{k=1}^{s}wk f(xk)$
+  </center>
+  
 Devemos seguir dessa forma:
   
   -  Determinar o número de pontos s que se deve tomar para resolver a integral, segundo o polinômio *ps(x)*;
@@ -110,6 +112,29 @@ SMR:::GaussLegendre(s)
   
 ### Transformação dos limites de integração
 
+Método utilizado para obtermos um intervalo de integração finito. Para isso utilizamos:
+
+<center>
+$\int_{c}^{d}f(g(t))|g'(t)| dt$
+</center>
+
+Temos a seguinte função: 
+
+<center>
+$\int_{0}^{3}x^2 dx$
+</center>
+
+A transformação será feita assim:
+
+<center>
+$\int_{0}^{3}x^2 dx = \frac{3-0}{2}\int_{-1}^{1}(\frac{3-0}{2}xk + \frac{3+0}{2})^2 dxk =$
+</center>
+
+<center>
+$\frac{3}{2} \int_{-1}^{1}(\frac{3xk}{2} + \frac{3}{2}) xk$
+</center>
+
+No R :
 ```
 
 >(x <- SMR:::GaussLegendre(2))
@@ -125,3 +150,19 @@ $weights
 
 ```
 ## Método de Newton-Raphson
+
+O objetivo desse método é encontrar aproximações para as raízes de uma função real:
+
+<center>
+$x:f(x)=0$
+</center>
+
+A fórmula para  a convergência pode ser facilmente encontrada, pois a derivada da função **f** no ponto **xk** é igual a tangente do ângulo **α** entre a reta tangente e a curva no ponto **xk**.
+
+<center>
+$f'(x) = tan(α) = \frac{∆y}{∆x}$
+$=\frac{f(xk)-0}{xk-xk+1}$
+</center>
+
+Começando o processo com um valor arbitrário inicial x0, em que quanto mais
+perto esse ponto for da raiz da função, mais rápido será a convergência da iteração, considerando f'(x0) diferente de zero.

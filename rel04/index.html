@@ -457,9 +457,10 @@ points(sort(rexp(1000, rate = 1)), col = &quot;red&quot;)
 Gaussina</h2>
 <div id="introdução" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Introdução</h3>
-<ul>
-<li>ADICONAR FÓRMULA (INTEGRAL)</li>
-</ul>
+<center>
+<span class="math inline">\(\int_{a}^{b}g(x) dx= \int_{a}^{b}w(x)f(x) dx
+~ \sum_{k=1}^{s}wk f(xk)\)</span>
+</center>
 <p>Devemos seguir dessa forma:</p>
 <ul>
 <li>Determinar o número de pontos s que se deve tomar para resolver a
@@ -478,6 +479,26 @@ aplicada nos nós <em>(xk)</em>;</li>
 <div id="transformação-dos-limites-de-integração" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Transformação dos
 limites de integração</h3>
+<p>Método utilizado para obtermos um intervalo de integração finito.
+Para isso utilizamos:</p>
+<center>
+<span class="math inline">\(\int_{c}^{d}f(g(t))|g&#39;(t)| dt\)</span>
+</center>
+<p>Temos a seguinte função:</p>
+<center>
+<span class="math inline">\(\int_{0}^{3}x^2 dx\)</span>
+</center>
+<p>A transformação será feita assim:</p>
+<center>
+<span class="math inline">\(\int_{0}^{3}x^2 dx =
+\frac{3-0}{2}\int_{-1}^{1}(\frac{3-0}{2}xk + \frac{3+0}{2})^2 dxk
+=\)</span>
+</center>
+<center>
+<span class="math inline">\(\frac{3}{2} \int_{-1}^{1}(\frac{3xk}{2} +
+\frac{3}{2}) xk\)</span>
+</center>
+<p>No R :</p>
 <pre><code>
 &gt;(x &lt;- SMR:::GaussLegendre(2))
 $nodes
@@ -495,6 +516,22 @@ $weights
 <div id="método-de-newton-raphson" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Método de
 Newton-Raphson</h2>
+<p>O objetivo desse método é encontrar aproximações para as raízes de
+uma função real:</p>
+<center>
+<span class="math inline">\(x:f(x)=0\)</span>
+</center>
+<p>A fórmula para a convergência pode ser facilmente encontrada, pois a
+derivada da função <strong>f</strong> no ponto <strong>xk</strong> é
+igual a tangente do ângulo <strong>α</strong> entre a reta tangente e a
+curva no ponto <strong>xk</strong>.</p>
+<center>
+<span class="math inline">\(f&#39;(x) = tan(α) = \frac{∆y}{∆x}\)</span>
+<span class="math inline">\(=\frac{f(xk)-0}{xk-xk+1}\)</span>
+</center>
+<p>Começando o processo com um valor arbitrário inicial x0, em que
+quanto mais perto esse ponto for da raiz da função, mais rápido será a
+convergência da iteração, considerando f’(x0) diferente de zero.</p>
 </div>
 </div>
 
