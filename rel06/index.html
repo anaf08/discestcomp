@@ -11,9 +11,8 @@
 
 <meta name="author" content="Ana Flavia Machado Muniz Andrade" />
 
-<meta name="date" content="2022-12-05" />
 
-<title>Relatório 04 - Aproximações de distribuições e geradores de números aleatórios</title>
+<title>Relatório 06 - Cáculo do Desvio Padrão</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -351,10 +350,9 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Relatório 04 - Aproximações de
-distribuições e geradores de números aleatórios</h1>
+<h1 class="title toc-ignore">Relatório 06 - Cáculo do Desvio Padrão</h1>
 <h4 class="author">Ana Flavia Machado Muniz Andrade</h4>
-<h4 class="date">12/05/2022</h4>
+<h4 class="date">29/05/2022</h4>
 
 </div>
 
@@ -365,22 +363,10 @@ distribuições e geradores de números aleatórios</h1>
 Objetivo</a></li>
 <li><a href="#apresentação-do-relatório"><span class="toc-section-number">2</span> Apresentação do relatório</a>
 <ul>
-<li><a href="#gerar-amostras-aleatória-de-uma-população"><span class="toc-section-number">2.1</span> Gerar amostras aleatória de uma
-população</a>
-<ul>
-<li><a href="#população"><span class="toc-section-number">2.1.1</span>
-População</a></li>
-<li><a href="#amostra"><span class="toc-section-number">2.1.2</span>
-Amostra</a></li>
-</ul></li>
-<li><a href="#quadratura-gaussina"><span class="toc-section-number">2.2</span> Quadratura Gaussina</a>
-<ul>
-<li><a href="#introdução"><span class="toc-section-number">2.2.1</span>
-Introdução</a></li>
-<li><a href="#transformação-dos-limites-de-integração"><span class="toc-section-number">2.2.2</span> Transformação dos limites de
-integração</a></li>
-</ul></li>
-<li><a href="#método-de-newton-raphson"><span class="toc-section-number">2.3</span> Método de Newton-Raphson</a></li>
+<li><a href="#desvio-padrão"><span class="toc-section-number">2.1</span>
+Desvio Padrão</a></li>
+<li><a href="#calculando-o-devsio-padrão-no-leem"><span class="toc-section-number">2.2</span> Calculando o devsio padrão no
+leem</a></li>
 </ul></li>
 </ul>
 </div>
@@ -388,150 +374,37 @@ integração</a></li>
 <hr />
 <div id="objetivo" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Objetivo</h1>
-<p>Descrever métodos para aproximação de distribuições e geradores de
-números:</p>
-<ul>
-<li>Gerar amostras de uma população</li>
-<li>Quadratura Gaussiana</li>
-<li>Método de Newton-Raphson</li>
-</ul>
+<p>Descrever brevemente a implementação da função Desvio Padrão no
+leem.</p>
 </div>
 <div id="apresentação-do-relatório" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Apresentação do
 relatório</h1>
-<div id="gerar-amostras-aleatória-de-uma-população" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Gerar amostras
-aleatória de uma população</h2>
-<p>A seguir será mostrado como gerar, aleatóriamente, amostras de uma
-população. Mas em primeiro lugar é importante trazermos algumas
-definições.</p>
-<div id="população" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> População</h3>
-<p>É o conjunto de elemntos para os quais desejamos que as conclusões de
-uma pesquisa sejam válidas, com restrição de que esses elementos possam
-ser observados sob as mesmas condições. A população pode ser
-<strong>finita</strong> ou <strong>infinita</strong>. Ela será
-<strong>finita</strong> quando seus elementos podem ser enumerados. Já
-para a população <strong>infinita</strong> ocorre o contrário, seus
-elementos não podem ser enumerados.</p>
+<p>Diante do objetivo do relatório apresentaremos nas próximas
+subseções, os pontos a serem discutidos.</p>
+<div id="desvio-padrão" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Desvio Padrão</h2>
+<p>Calculado pela seguinte fórmula:</p>
+<center>
+<span class="math inline">\(DP = \sqrt \frac {\sum (xi -
+M)^2}{n}\)</span>
+</center>
+<p>O desvio padrão (DP) é definido como a raiz quadrada da variância
+(V).Variância é uma medida de dispersão e é usada também para expressar
+o quanto um conjunto de dados se desvia da média.É comum, estarmos
+interessados no desvio padrão de uma população, por exemplo. No entanto,
+utilizamos dados de uma amostra para estimar o desvio de uma população a
+partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de
+escola: quantos livros eles alugaram no último mês? Assim temos toda a
+população escolar envolvida, pois a pergunta se dirige a todos os alunos
+. Em tais casos, utiliza-se o desvio da população.</p>
 </div>
-<div id="amostra" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Amostra</h3>
-<p>São pequenos grupos escolhidos da população, afim de representarem as
-caracteristicas da população. Amostragem é o ato de analisar uma parte
-do evento observado com o intuito de saber como a população se comporta,
-sem necessariamente analisar a população como um todo.</p>
-<p>No R Utilizamos diversos comandos para gerar tais amostras
-aleatóriamente:</p>
-<pre><code>  rnorm()
-  rexp()
-  rgamma()
-  rgumbel()
-  rweibell()
-  rSMR()
-</code></pre>
-<pre><code>
-# Gerando numeros aleatorios de uma distribuicao exponencial
-
-rexponencial &lt;- function(n, lambda) {
-  if (!is.numeric(lambda) | lambda &lt; 0) 
-    stop(&quot;O argumento lambda deve ser numérico e maior que 0!&quot;, call. = FALSE)
-  nunif &lt;- runif(n)
-  x &lt;- (-log(1 - nunif)) / lambda
-  return(x)
-}
-</code></pre>
-<pre><code>
-# Verificando graficamente
-plot(sort(rexponencial(1000, lambda = 1)))
-points(sort(rexp(1000, rate = 1)), col = &quot;red&quot;)
-
-</code></pre>
-<center>
-<img src="data:image/png;base64,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" />
-</center>
-</div>
-</div>
-<div id="quadratura-gaussina" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Quadratura
-Gaussina</h2>
-<div id="introdução" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Introdução</h3>
-<center>
-<span class="math inline">\(\int_{a}^{b}g(x) dx= \int_{a}^{b}w(x)f(x) dx
-~ \sum_{k=1}^{s}wk f(xk)\)</span>
-</center>
-<p>Devemos seguir dessa forma:</p>
-<ul>
-<li>Determinar o número de pontos s que se deve tomar para resolver a
-integral, segundo o polinômio <em>ps(x)</em>;</li>
-<li>Determinar os nós (xk) e os pesos (wk) da quadratura, usando
-função:</li>
-</ul>
-<pre><code>SMR:::GaussLegendre(s)
-</code></pre>
-<ul>
-<li>Determinar <em>g(xk) = f(xk)</em>, isto é, a função de interesse
-aplicada nos nós <em>(xk)</em>;</li>
-<li>Calcular a integral;</li>
-</ul>
-</div>
-<div id="transformação-dos-limites-de-integração" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Transformação dos
-limites de integração</h3>
-<p>Método utilizado para obtermos um intervalo de integração finito.
-Para isso utilizamos:</p>
-<center>
-<span class="math inline">\(\int_{c}^{d}f(g(t))|g&#39;(t)| dt\)</span>
-</center>
-<p>Temos a seguinte função:</p>
-<center>
-<span class="math inline">\(\int_{0}^{3}x^2 dx\)</span>
-</center>
-<p>A transformação será feita assim:</p>
-<center>
-<span class="math inline">\(\int_{0}^{3}x^2 dx =
-\frac{3-0}{2}\int_{-1}^{1}(\frac{3-0}{2}xk + \frac{3+0}{2})^2 dxk
-=\)</span>
-</center>
-<center>
-<span class="math inline">\(\frac{3}{2} \int_{-1}^{1}(\frac{3xk}{2} +
-\frac{3}{2}) xk\)</span>
-</center>
-<p>No R :</p>
-<pre><code>
-&gt;(x &lt;- SMR:::GaussLegendre(2))
-$nodes
-[1] -0.5773503 0.5773503
-$weights
-[1] 1 1
-&gt; fx3 &lt;- function(x) (1.5 * x + 1.5)^2 # para x^3 [0, 2]
-&gt; # Para fx3 temos
-&gt; 1.5 * sum(x$weights * fx3(x$nodes))
-[1] 9
-
-</code></pre>
-</div>
-</div>
-<div id="método-de-newton-raphson" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Método de
-Newton-Raphson</h2>
-<p>O objetivo desse método é encontrar aproximações para as raízes de
-uma função real:</p>
-<center>
-<span class="math inline">\(x:f(x)=0\)</span>
-</center>
-<p>A fórmula para a convergência pode ser facilmente encontrada, pois a
-derivada da função <strong>f</strong> no ponto <strong>xk</strong> é
-igual a tangente do ângulo <strong>α</strong> entre a reta tangente e a
-curva no ponto <strong>xk</strong>.</p>
-<center>
-<span class="math inline">\(f&#39;(x) = tan(α) = \frac{∆y}{∆x}\)</span>
-<span class="math inline">\(=\frac{f(xk)-0}{xk-xk+1}\)</span>
-</center>
-<p>Começando o processo com um valor arbitrário inicial x0, em que
-quanto mais perto esse ponto for da raiz da função, mais rápido será a
-convergência da iteração, considerando f’(x0) diferente de zero.</p>
+<div id="calculando-o-devsio-padrão-no-leem" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Calculando o devsio
+padrão no leem</h2>
+<p>Para criação de funções é necessário implementarmos certos
+argumentos. Na função desvio padrão utilizamos <code>rouding</code> ,
+<code>na.rm</code> , <code>details</code> e <code>grouped</code>.</p>
 </div>
 </div>
 

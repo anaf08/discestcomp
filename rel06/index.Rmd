@@ -1,7 +1,7 @@
 ---
-title: "Relatório 04 - Aproximações de distribuições e geradores de números aleatórios"
+title: " Relatório 06 - Cáculo do Desvio Padrão "
 author: "Ana Flavia Machado Muniz Andrade"
-date: "12/05/2022"
+date: "29/05/2022"
 header-includes:
   - \usepackage{titling}
   - \pretitle{\begin{center}
@@ -30,139 +30,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Objetivo
+Descrever brevemente a implementação da função Desvio Padrão no leem.
 
-Descrever métodos para aproximação de distribuições e geradores de números:
-
-  - Gerar amostras de uma população
-  - Quadratura Gaussiana
-  - Método de Newton-Raphson
-  
 
 # Apresentação do relatório
+Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
 
-
-## Gerar amostras aleatória de uma população
-
-A seguir será mostrado como gerar, aleatóriamente, amostras de uma população. Mas em primeiro lugar é importante trazermos algumas definições.
-
-### População
-
-É o conjunto de elemntos para os quais desejamos que as conclusões de uma pesquisa sejam válidas, com restrição de que esses elementos possam ser observados sob as mesmas condições.
-A população pode ser **finita** ou **infinita**. Ela será **finita** quando seus elementos podem ser enumerados. Já para a população **infinita** ocorre o contrário, seus elementos não podem ser enumerados. 
-
-### Amostra 
-
-São pequenos grupos escolhidos da população, afim de representarem as caracteristicas da população.
-Amostragem é o ato de analisar uma parte do evento observado com o intuito de saber como a população se comporta, sem necessariamente analisar a população como um todo.
-
-No R Utilizamos diversos comandos para gerar tais amostras aleatóriamente:
-
-```
-  rnorm()
-  rexp()
-  rgamma()
-  rgumbel()
-  rweibell()
-  rSMR()
-
-```
-```
-
-# Gerando numeros aleatorios de uma distribuicao exponencial
-
-rexponencial <- function(n, lambda) {
-  if (!is.numeric(lambda) | lambda < 0) 
-    stop("O argumento lambda deve ser numérico e maior que 0!", call. = FALSE)
-  nunif <- runif(n)
-  x <- (-log(1 - nunif)) / lambda
-  return(x)
-}
-
-```
-```
-
-# Verificando graficamente
-plot(sort(rexponencial(1000, lambda = 1)))
-points(sort(rexp(1000, rate = 1)), col = "red")
-
-
-```
-<center>
-![](Rplot.png)
-</center>
-
-## Quadratura Gaussina
-
-### Introdução 
-
-  <center>
-  $\int_{a}^{b}g(x) dx= \int_{a}^{b}w(x)f(x) dx ~ \sum_{k=1}^{s}wk f(xk)$
-  </center>
-  
-Devemos seguir dessa forma:
-  
-  -  Determinar o número de pontos s que se deve tomar para resolver a integral, segundo o polinômio *ps(x)*;
-  - Determinar os nós (xk) e os pesos (wk) da quadratura, usando função:
-```
-SMR:::GaussLegendre(s)
-
-```
-  - Determinar *g(xk) = f(xk)*, isto é, a função de interesse aplicada nos nós *(xk)*;
-  - Calcular a integral;
-  
-### Transformação dos limites de integração
-
-Método utilizado para obtermos um intervalo de integração finito. Para isso utilizamos:
+## Desvio Padrão
+Calculado pela seguinte fórmula:
 
 <center>
-$\int_{c}^{d}f(g(t))|g'(t)| dt$
+$DP = \sqrt \frac {\sum (xi - M)^2}{n}$
 </center>
 
-Temos a seguinte função: 
+O desvio padrão (DP) é definido como a raiz quadrada da variância (V).Variância é uma medida de dispersão e é usada também para expressar o quanto um conjunto de dados se desvia da média.É comum, estarmos interessados no desvio padrão de uma população, por exemplo. No entanto, utilizamos dados de uma amostra para estimar o desvio de uma população a partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de escola: quantos livros eles alugaram no último mês? Assim temos toda a população escolar envolvida, pois a pergunta se dirige a todos os alunos . Em tais casos, utiliza-se o desvio da população.
 
-<center>
-$\int_{0}^{3}x^2 dx$
-</center>
+## Calculando o devsio padrão no leem
+Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`.
 
-A transformação será feita assim:
-
-<center>
-$\int_{0}^{3}x^2 dx = \frac{3-0}{2}\int_{-1}^{1}(\frac{3-0}{2}xk + \frac{3+0}{2})^2 dxk =$
-</center>
-
-<center>
-$\frac{3}{2} \int_{-1}^{1}(\frac{3xk}{2} + \frac{3}{2}) xk$
-</center>
-
-No R :
-```
-
->(x <- SMR:::GaussLegendre(2))
-$nodes
-[1] -0.5773503 0.5773503
-$weights
-[1] 1 1
-> fx3 <- function(x) (1.5 * x + 1.5)^2 # para x^3 [0, 2]
-> # Para fx3 temos
-> 1.5 * sum(x$weights * fx3(x$nodes))
-[1] 9
-
-
-```
-## Método de Newton-Raphson
-
-O objetivo desse método é encontrar aproximações para as raízes de uma função real:
-
-<center>
-$x:f(x)=0$
-</center>
-
-A fórmula para  a convergência pode ser facilmente encontrada, pois a derivada da função **f** no ponto **xk** é igual a tangente do ângulo **α** entre a reta tangente e a curva no ponto **xk**.
-
-<center>
-$f'(x) = tan(α) = \frac{∆y}{∆x}$
-$=\frac{f(xk)-0}{xk-xk+1}$
-</center>
-
-Começando o processo com um valor arbitrário inicial x0, em que quanto mais
-perto esse ponto for da raiz da função, mais rápido será a convergência da iteração, considerando f'(x0) diferente de zero.
