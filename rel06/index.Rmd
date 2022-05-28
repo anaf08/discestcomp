@@ -46,7 +46,7 @@ $DP = \sqrt \frac {\sum (xi - M)^2}{n}$
 
 O desvio padrão (DP) é definido como a raiz quadrada da variância (V).Variância é uma medida de dispersão e é usada também para expressar o quanto um conjunto de dados se desvia da média.É comum, estarmos interessados no desvio padrão de uma população, por exemplo. No entanto, utilizamos dados de uma amostra para estimar o desvio de uma população a partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de escola: quantos livros eles alugaram no último mês? Assim temos toda a população escolar envolvida, pois a pergunta se dirige a todos os alunos . Em tais casos, utiliza-se o desvio da população.
 
-## Calculando o devsio padrão no leem
+## Calculando o desvio padrão no leem
 
 Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`
 
