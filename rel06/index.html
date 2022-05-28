@@ -404,7 +404,63 @@ população escolar envolvida, pois a pergunta se dirige a todos os alunos
 padrão no leem</h2>
 <p>Para criação de funções é necessário implementarmos certos
 argumentos. Na função desvio padrão utilizamos <code>rouding</code> ,
-<code>na.rm</code> , <code>details</code> e <code>grouped</code>.</p>
+<code>na.rm</code> , <code>details</code> e <code>grouped</code></p>
+<pre><code>sdev &lt;- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
+</code></pre>
+<p>Depois disso devemos colocar algumas condições para garantir o
+funcionamento correto da função, para o desvio padrão utilizamos os
+seguintes:</p>
+<pre><code>  if (class(x) != &quot;leem&quot;) stop(&quot;Use the &#39;new_leem()&#39; function to create an object of class leem!&quot;, call. = FALSE)
+  if (class(x) == &quot;leem&quot; &amp; is.null(attr(x, &quot;table&quot;))) x &lt;- tabfreq(x)
+  if (attr(x, &quot;variable&quot;) == &quot;discrete&quot;) {
+    numchar &lt;- is.numeric(x$estat$raw_data)
+    if (numchar) {
+      desvpad &lt;- round(sd(x = x$estat$raw_data,
+                          na.rm = na.rm), digits = rounding)
+      resume &lt;- list(sdeviation = desvpad, table = x$tabela, rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      } else {
+        return(desvpad)
+      }
+      
+    } else {
+      stop(&quot;Measure not used for this data type!&quot;, call. = FALSE,
+           domain = &quot;R-leem&quot;)
+    }
+  }
+  if (attr(x, &quot;variable&quot;) == &quot;continuous&quot;) {
+    if (grouped == TRUE) {
+      desvpad &lt;- sqrt((variance(x)))
+      resume &lt;- list(sdeviation = desvpad, table = x$tabela,
+                     rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      }
+      else {
+        return(desvpad)
+      }
+    } else {
+      desvpad &lt;- round(sd(x = x$estat$raw_data, na.rm = na.rm),
+                       digits = rounding)
+      resume &lt;- list(sdeviation = desvpad, table = x$tabela,
+                     rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      }
+      else {
+        return(desvpad)
+      }
+    }
+  }
+}
+</code></pre>
+<p>Para testar o funcionamento da função podemos utilizar:</p>
+<pre><code>set.seed(10)
+x &lt;- rnorm(36, 100, 50)
+x &lt;- new_leem(x, variable = 2)
+sdev(x)
+</code></pre>
 </div>
 </div>
 

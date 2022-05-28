@@ -37,6 +37,7 @@ Descrever brevemente a implementação da função Desvio Padrão no leem.
 Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
 
 ## Desvio Padrão
+
 Calculado pela seguinte fórmula:
 
 <center>
@@ -46,5 +47,68 @@ $DP = \sqrt \frac {\sum (xi - M)^2}{n}$
 O desvio padrão (DP) é definido como a raiz quadrada da variância (V).Variância é uma medida de dispersão e é usada também para expressar o quanto um conjunto de dados se desvia da média.É comum, estarmos interessados no desvio padrão de uma população, por exemplo. No entanto, utilizamos dados de uma amostra para estimar o desvio de uma população a partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de escola: quantos livros eles alugaram no último mês? Assim temos toda a população escolar envolvida, pois a pergunta se dirige a todos os alunos . Em tais casos, utiliza-se o desvio da população.
 
 ## Calculando o devsio padrão no leem
-Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`.
 
+Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`
+
+```
+sdev <- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
+
+```
+Depois disso devemos colocar algumas condições para garantir o funcionamento correto da função, para o desvio padrão utilizamos os seguintes:
+
+```
+  if (class(x) != "leem") stop("Use the 'new_leem()' function to create an object of class leem!", call. = FALSE)
+  if (class(x) == "leem" & is.null(attr(x, "table"))) x <- tabfreq(x)
+  if (attr(x, "variable") == "discrete") {
+    numchar <- is.numeric(x$estat$raw_data)
+    if (numchar) {
+      desvpad <- round(sd(x = x$estat$raw_data,
+                          na.rm = na.rm), digits = rounding)
+      resume <- list(sdeviation = desvpad, table = x$tabela, rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      } else {
+        return(desvpad)
+      }
+      
+    } else {
+      stop("Measure not used for this data type!", call. = FALSE,
+           domain = "R-leem")
+    }
+  }
+  if (attr(x, "variable") == "continuous") {
+    if (grouped == TRUE) {
+      desvpad <- sqrt((variance(x)))
+      resume <- list(sdeviation = desvpad, table = x$tabela,
+                     rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      }
+      else {
+        return(desvpad)
+      }
+    } else {
+      desvpad <- round(sd(x = x$estat$raw_data, na.rm = na.rm),
+                       digits = rounding)
+      resume <- list(sdeviation = desvpad, table = x$tabela,
+                     rawdata = x$estat$raw_data)
+      if (details) {
+        return(resume)
+      }
+      else {
+        return(desvpad)
+      }
+    }
+  }
+}
+
+```
+Para testar o funcionamento da função podemos utilizar:
+
+```
+set.seed(10)
+x <- rnorm(36, 100, 50)
+x <- new_leem(x, variable = 2)
+sdev(x)
+
+```
