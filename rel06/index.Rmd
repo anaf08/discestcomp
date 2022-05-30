@@ -50,6 +50,11 @@ O desvio padrão (DP) é definido como a raiz quadrada da variância (V).Variân
 
 Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`
 
+  - `details`: argumento utilizado para definir se há mais dados nos resultados além da variância. Usaremos `FALSE` quando queremos apenas a variância e `TRUE` quando queremos mostrar todos os dados da tabela `tabfreq`;
+  - `na.rm`: argumento utilizado para quando há resutados inválidos. Usamos `FALSE` indica que esses dados será evado em consideração;
+  - `rouding`: argumento núemrico que indicará a quantidade de casas decimais;
+  - `grouped`: argumento lógico utilizado em variáveis contínuas.
+
 ```
 sdev <- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
 
@@ -112,3 +117,13 @@ x <- new_leem(x, variable = 2)
 sdev(x)
 
 ```
+
+
+
+
+  
+  
+  
+
+
+

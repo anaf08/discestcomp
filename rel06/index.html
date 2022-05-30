@@ -405,6 +405,19 @@ padrão no leem</h2>
 <p>Para criação de funções é necessário implementarmos certos
 argumentos. Na função desvio padrão utilizamos <code>rouding</code> ,
 <code>na.rm</code> , <code>details</code> e <code>grouped</code></p>
+<ul>
+<li><code>details</code>: argumento utilizado para definir se há mais
+dados nos resultados além da variância. Usaremos <code>FALSE</code>
+quando queremos apenas a variância e <code>TRUE</code> quando queremos
+mostrar todos os dados da tabela <code>tabfreq</code>;</li>
+<li><code>na.rm</code>: argumento utilizado para quando há resutados
+inválidos. Usamos <code>FALSE</code> indica que esses dados será evado
+em consideração;</li>
+<li><code>rouding</code>: argumento núemrico que indicará a quantidade
+de casas decimais;</li>
+<li><code>grouped</code>: argumento lógico utilizado em variáveis
+contínuas.</li>
+</ul>
 <pre><code>sdev &lt;- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
 </code></pre>
 <p>Depois disso devemos colocar algumas condições para garantir o

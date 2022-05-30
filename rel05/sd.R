@@ -1,4 +1,4 @@
-# Calculando o devsio padr√£o no leem
+# Calculando o devsio padr„o no leem
 
 sdev <- function(x, rounding = 2, na.rm = FALSE, details = FALSE,
                  grouped = TRUE) {
