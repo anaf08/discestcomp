@@ -1,6 +1,6 @@
 ---
 title: "Relatórios da Disciplina de Estatística Computacional"
-author: "[Ben Dêivide](https://bendeivide.github.io) | [DEFIM/UFSJ](https://ufsj.edu.br)"
+author: "[Ana Flavia Machado](https://anaf08.github.io/) | [DEFIM/UFSJ](https://ufsj.edu.br)"
 date: "`r format(Sys.time(), '%d %B, %Y, %Hh:%Mmin:%Sseg')`"
 header-includes:
   - \usepackage{titling}
