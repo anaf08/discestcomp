@@ -135,3 +135,5 @@ Relatórios desenvolvidos:
   - [var.R](rel05/var.R){target="_blank"}
   - [sd.R](rel05/sd.R){target="_blank"}
 - [Relatório 06 (29/05/2022)](rel06/index.html){target="_blank"}
+- Relatório 07 (02/06/2022)
+  - [binom.R](rel07/binom.R){target="_blank"}
