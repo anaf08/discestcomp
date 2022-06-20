@@ -1,7 +1,7 @@
 ---
-title: " Relatório 06 - Cáculo do Desvio Padrão "
+title: " Relatório 08 - Gráficos na estatística descritiva "
 author: "Ana Flavia Machado Muniz Andrade"
-date: "29/05/2022"
+date: "17/06/2022"
 header-includes:
   - \usepackage{titling}
   - \pretitle{\begin{center}
@@ -30,100 +30,182 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Objetivo
-Descrever brevemente a implementação da função Desvio Padrão no leem.
+Descrever o processo de criação de gráficos da estatística descritiva com o comando leem
 
 
 # Apresentação do relatório
-Diante do objetivo do relatório apresentaremos nas próximas subseções, os pontos a serem discutidos.
 
-## Desvio Padrão
+# Gráficos na estatística descritiva
 
-Calculado pela seguinte fórmula:
+```{r}
 
-<center>
-$DP = \sqrt \frac {\sum (xi - M)^2}{n}$
-</center>
-
-O desvio padrão (DP) é definido como a raiz quadrada da variância (V).Variância é uma medida de dispersão e é usada também para expressar o quanto um conjunto de dados se desvia da média.É comum, estarmos interessados no desvio padrão de uma população, por exemplo. No entanto, utilizamos dados de uma amostra para estimar o desvio de uma população a partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de escola: quantos livros eles alugaram no último mês? Assim temos toda a população escolar envolvida, pois a pergunta se dirige a todos os alunos . Em tais casos, utiliza-se o desvio da população.
-
-## Calculando o desvio padrão no leem
-
-Para criação de funções é necessário implementarmos certos argumentos. Na função desvio padrão utilizamos `rouding` , `na.rm` , `details` e `grouped`
-
-  - `details`: argumento utilizado para definir se há mais dados nos resultados além da variância. Usaremos `FALSE` quando queremos apenas a variância e `TRUE` quando queremos mostrar todos os dados da tabela `tabfreq`;
-  - `na.rm`: argumento utilizado para quando há resutados inválidos. Usamos `FALSE` indica que esses dados será evado em consideração;
-  - `rouding`: argumento núemrico que indicará a quantidade de casas decimais;
-  - `grouped`: argumento lógico utilizado em variáveis contínuas.
-
-```
-sdev <- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
-
-```
-Depois disso devemos colocar algumas condições para garantir o funcionamento correto da função, para o desvio padrão utilizamos os seguintes:
-
-```
-  if (class(x) != "leem") stop("Use the 'new_leem()' function to create an object of class leem!", call. = FALSE)
-  if (class(x) == "leem" & is.null(attr(x, "table"))) x <- tabfreq(x)
-  if (attr(x, "variable") == "discrete") {
-    numchar <- is.numeric(x$estat$raw_data)
-    if (numchar) {
-      desvpad <- round(sd(x = x$estat$raw_data,
-                          na.rm = na.rm), digits = rounding)
-      resume <- list(sdeviation = desvpad, table = x$tabela, rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      } else {
-        return(desvpad)
+p <- function(q, dist = "poisson", lower.tail = TRUE, rounding = 4,porcentage = FALSE, gui = "plot", ...) {
+  argaddit <- list(...)
+  argdef <- formals(p)
+  if (dist == "poisson") {
+    
+    if (!any(names(argaddit) == "lambda")) stop("Insira o argumento 'lambda'!", call. = FALSE)
+    
+    
+    if (lower.tail) {
+      plotcurve <- function(q, lambda) {
+        rmin <- lambda - 4 * sqrt(lambda)
+        if (rmin < 0) rmin <- 0 else rmin <- round(rmin)
+        rmax <- ceiling(lambda + 4 * sqrt (lambda)) 
+        x <- rmin:rmax
+        x1 <- rmin:q
+        x2 <- (q + 1):rmax
+        probx <- dpois(x, lambda = lambda)
+        probx1 <- dpois(x1, lambda = lambda)
+        probx2 <- dpois(x2, lambda = lambda)
+        
+        #Ãrea de plotagem
+        xlim <- c(rmin, rmax)
+        ylim <- c(min(probx), max(probx) + 0.2)
+        
+        #Ãrea de plotagem 
+        plot.new()
+        plot.window(xlim, ylim)
+        
+        #Eixos
+        axis(1)
+        axis(2)
+        
+        #TÃ­tulo e labels
+        title(ylab = expression(p[X](x)), xlab="X")
+        
+        
+        #Linhas e pontos da regiÃ£o desejada
+        lines (x1, probx1, type = "h", panel.first = grid(), lwd = 2, col = "red")
+        points(x1, probx1, lwd = 2, col = "red", pch = 19)
+        
+        lines (x2, probx2, type = "h", lwd = 2)
+        points(x2, probx2, lwd = 2, pch = 19)
+      
+        
+        abline(v=lambda, lty=2)
+        qq <- round(q, digits=2)
+        qqaux <-round(q, digits=2)
+        Pr <- round(ppois(qq, lambda = lambda, lower.tail = T), rounding)
+        Pr <- gsub("\\.", ",", Pr)
+        qq <- gsub("\\.", ",", qq)
+        axis(side=1, at=qqaux, labels=qqaux,
+             col="red", font = 2)
+        abline(v = qqaux, lty=2, col = "red")
+        legend("topleft", bty="n", fill="red",
+               legend=substitute(P(X<=q)==Pr~"\n\n"~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
       }
       
-    } else {
-      stop("Measure not used for this data type!", call. = FALSE,
-           domain = "R-leem")
+      if (lower.tail) {
+        plotcurve <- function(q, lambda) {
+          rmin <- lambda - 4 * sqrt(lambda)
+          if (rmin < 0) rmin <- 0 else rmin <- round(rmin)
+          rmax <- ceiling(lambda + 4 * sqrt (lambda)) 
+          x <- rmin:rmax
+          x1 <- rmin:q
+          x2 <- (q + 1):rmax
+          probx <- dpois(x, lambda = lambda)
+          probx1 <- dpois(x1, lambda = lambda)
+          probx2 <- dpois(x2, lambda = lambda)
+          
+          #Ãrea de plotagem
+          xlim <- c(rmin, rmax)
+          ylim <- c(min(probx), max(probx) + 0.2)
+          
+          #Ãrea de plotagem 
+          plot.new()
+          plot.window(xlim, ylim)
+          
+          #Eixos
+          axis(1)
+          axis(2)
+          
+          #TÃ­tulo e labels
+          title(ylab = expression(p[X](x)), xlab="X")
+          
+          
+          #Linhas e pontos da regiÃ£o desejada
+          lines (x1, probx1, type = "h", panel.first = grid(), lwd = 2)
+          points(x1, probx1, lwd = 2, pch = 19)
+          
+          lines (x2, probx2, type = "h", lwd = 2, col = "red")
+          points(x2, probx2, lwd = 2, col = "red", pch = 19)
+          
+          
+          abline(v=lambda, lty=2)
+          qq <- round(q, digits=2)
+          qqaux <-round(q, digits=2)
+          Pr <- round(ppois(qq, lambda = lambda, lower.tail = F), rounding)
+          Pr <- gsub("\\.", ",", Pr)
+          qq <- gsub("\\.", ",", qq)
+          axis(side=1, at=qqaux, labels=qqaux,
+               col="red", font = 2)
+          abline(v = qqaux, lty=2, col = "red")
+          legend("topleft", bty="n", fill="red",
+                 legend=substitute(P(X<=q)==Pr~"\n\n"~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
+        }
+        
+      if (gui == "plot" ) {
+        # Probability
+        mu <- argaddit$mean
+        sigma <- argaddit$sd
+        prob <- ppois(q = q, lambda = lambda)
+        # Plot
+        plotcurve(q, lambda)
+      }
+      if (gui == "rstudio") {
+        manipulate::manipulate(plotcurve(qaux, muaux),
+                               qaux = manipulate::slider(-6, 6, q),
+                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
+      }
+      
+    } else{
+      plotcurve <- function(q, lambda) {
+        curve(dpois(x, lambda = lambda), -6, 6, ylab = expression(f[T](t)), xlab="T")
+        x <- seq(q, 6, by=0.01)
+        y <- seq(-6, q, by=0.01)
+        fx <- dpois(x, lambda = lambda)
+        fy <- dpois(y, lambda = lambda)
+        polygon(c(x, rev(x)),
+                c(fx, rep(0, length(fx))),
+                col="red")
+        polygon(c(y, rev(y)),
+                c(fy, rep(0, length(fy))),
+                col="gray90")
+        abline(v=0, lty=2)
+        qq <- round(q, digits=2)
+        qqaux <-round(q, digits=2)
+        Pr <- round(ppois(qq, lambda = lambda, lower.tail = F), digits=rounding)
+        Pr <- gsub("\\.", ",", Pr)
+        qq <- gsub("\\.", ",", qq)
+        axis(side=1, at=qqaux, labels=qqaux,
+             col="red", font = 2)
+        abline(v = qqaux, lty=2, col = "red")
+        legend("topleft", bty="n", fill="red",
+               legend=substitute(P(T~`>`~q)==Pr~"\n\n"~lambda=lambda, list(q=qq, Pr=Pr, lambda = lambda)))
+      }
+      if (gui == "plot") {
+        # Probability
+        lambda <- argaddit$lambda
+        lambda <- argaddit$lambda
+        prob <- ppois(q = q, lambda = lambda)
+        # Plot
+        plotcurve(q,lambda = lambda)
+      }
+      if (gui == "rstudio") {
+        manipulate::manipulate(plotcurve(qaux, lambdaaux),
+                               qaux = manipulate::slider(-6, 6, q),
+                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
+      }
+      
     }
   }
-  if (attr(x, "variable") == "continuous") {
-    if (grouped == TRUE) {
-      desvpad <- sqrt((variance(x)))
-      resume <- list(sdeviation = desvpad, table = x$tabela,
-                     rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      }
-      else {
-        return(desvpad)
-      }
-    } else {
-      desvpad <- round(sd(x = x$estat$raw_data, na.rm = na.rm),
-                       digits = rounding)
-      resume <- list(sdeviation = desvpad, table = x$tabela,
-                     rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      }
-      else {
-        return(desvpad)
-      }
-    }
-  }
+  prob <- round(prob, rounding)
+  if (porcentage == TRUE) prob <- prob * 100
+  return(prob)
+}
 }
 
-```
-Para testar o funcionamento da função podemos utilizar:
 
-```
-set.seed(10)
-x <- rnorm(36, 100, 50)
-x <- new_leem(x, variable = 2)
-sdev(x)
 
 ```
-
-
-
-
-  
-  
-  
-
-
-

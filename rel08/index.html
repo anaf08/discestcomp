@@ -12,7 +12,7 @@
 <meta name="author" content="Ana Flavia Machado Muniz Andrade" />
 
 
-<title>Relatório 06 - Cáculo do Desvio Padrão</title>
+<title>Relatório 08 - Gráficos na estatística descritiva</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,9 +350,10 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Relatório 06 - Cáculo do Desvio Padrão</h1>
+<h1 class="title toc-ignore">Relatório 08 - Gráficos na estatística
+descritiva</h1>
 <h4 class="author">Ana Flavia Machado Muniz Andrade</h4>
-<h4 class="date">29/05/2022</h4>
+<h4 class="date">17/06/2022</h4>
 
 </div>
 
@@ -361,120 +362,198 @@ pre code {
 <ul>
 <li><a href="#objetivo"><span class="toc-section-number">1</span>
 Objetivo</a></li>
-<li><a href="#apresentação-do-relatório"><span class="toc-section-number">2</span> Apresentação do relatório</a>
-<ul>
-<li><a href="#desvio-padrão"><span class="toc-section-number">2.1</span>
-Desvio Padrão</a></li>
-<li><a href="#calculando-o-desvio-padrão-no-leem"><span class="toc-section-number">2.2</span> Calculando o desvio padrão no
-leem</a></li>
-</ul></li>
+<li><a href="#apresentação-do-relatório"><span class="toc-section-number">2</span> Apresentação do relatório</a></li>
+<li><a href="#gráficos-na-estatística-descritiva"><span class="toc-section-number">3</span> Gráficos na estatística
+descritiva</a></li>
 </ul>
 </div>
 
 <hr />
 <div id="objetivo" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Objetivo</h1>
-<p>Descrever brevemente a implementação da função Desvio Padrão no
-leem.</p>
+<p>Descrever o processo de criação de gráficos da estatística descritiva
+com o comando leem</p>
 </div>
 <div id="apresentação-do-relatório" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Apresentação do
 relatório</h1>
-<p>Diante do objetivo do relatório apresentaremos nas próximas
-subseções, os pontos a serem discutidos.</p>
-<div id="desvio-padrão" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Desvio Padrão</h2>
-<p>Calculado pela seguinte fórmula:</p>
-<center>
-<span class="math inline">\(DP = \sqrt \frac {\sum (xi -
-M)^2}{n}\)</span>
-</center>
-<p>O desvio padrão (DP) é definido como a raiz quadrada da variância
-(V).Variância é uma medida de dispersão e é usada também para expressar
-o quanto um conjunto de dados se desvia da média.É comum, estarmos
-interessados no desvio padrão de uma população, por exemplo. No entanto,
-utilizamos dados de uma amostra para estimar o desvio de uma população a
-partir do desvio dessa amostra.Por exemplo, no caso de uma biblioteca de
-escola: quantos livros eles alugaram no último mês? Assim temos toda a
-população escolar envolvida, pois a pergunta se dirige a todos os alunos
-. Em tais casos, utiliza-se o desvio da população.</p>
 </div>
-<div id="calculando-o-desvio-padrão-no-leem" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Calculando o desvio
-padrão no leem</h2>
-<p>Para criação de funções é necessário implementarmos certos
-argumentos. Na função desvio padrão utilizamos <code>rouding</code> ,
-<code>na.rm</code> , <code>details</code> e <code>grouped</code></p>
-<ul>
-<li><code>details</code>: argumento utilizado para definir se há mais
-dados nos resultados além da variância. Usaremos <code>FALSE</code>
-quando queremos apenas a variância e <code>TRUE</code> quando queremos
-mostrar todos os dados da tabela <code>tabfreq</code>;</li>
-<li><code>na.rm</code>: argumento utilizado para quando há resutados
-inválidos. Usamos <code>FALSE</code> indica que esses dados será evado
-em consideração;</li>
-<li><code>rouding</code>: argumento núemrico que indicará a quantidade
-de casas decimais;</li>
-<li><code>grouped</code>: argumento lógico utilizado em variáveis
-contínuas.</li>
-</ul>
-<pre><code>sdev &lt;- function(x, rounding = 2, na.rm = FALSE, details = FALSE, grouped = TRUE)
-</code></pre>
-<p>Depois disso devemos colocar algumas condições para garantir o
-funcionamento correto da função, para o desvio padrão utilizamos os
-seguintes:</p>
-<pre><code>  if (class(x) != &quot;leem&quot;) stop(&quot;Use the &#39;new_leem()&#39; function to create an object of class leem!&quot;, call. = FALSE)
-  if (class(x) == &quot;leem&quot; &amp; is.null(attr(x, &quot;table&quot;))) x &lt;- tabfreq(x)
-  if (attr(x, &quot;variable&quot;) == &quot;discrete&quot;) {
-    numchar &lt;- is.numeric(x$estat$raw_data)
-    if (numchar) {
-      desvpad &lt;- round(sd(x = x$estat$raw_data,
-                          na.rm = na.rm), digits = rounding)
-      resume &lt;- list(sdeviation = desvpad, table = x$tabela, rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      } else {
-        return(desvpad)
+<div id="gráficos-na-estatística-descritiva" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Gráficos na estatística
+descritiva</h1>
+<pre><code>{r}
+
+# Distribuição Poisson 
+
+p &lt;- function(q, dist = &quot;poisson&quot;, lower.tail = TRUE, rounding = 4, porcentage = FALSE, gui = &quot;plot&quot;, ...) {
+  argaddit &lt;- list(...)
+  argdef &lt;- formals(p)
+  if (dist == &quot;poisson&quot;) {
+    
+    if (!any(names(argaddit) == &quot;lambda&quot;)) stop(&quot;Insira o argumento &#39;lambda&#39;!&quot;, call. = FALSE)
+    
+    
+    if (lower.tail) {
+      plotcurve &lt;- function(q, lambda) {
+        rmin &lt;- lambda - 4 * sqrt(lambda)
+        if (rmin &lt; 0) rmin &lt;- 0 else rmin &lt;- round(rmin)
+        rmax &lt;- ceiling(lambda + 4 * sqrt (lambda)) 
+        x &lt;- rmin:rmax
+        x1 &lt;- rmin:q
+        x2 &lt;- (q + 1):rmax
+        probx &lt;- dpois(x, lambda = lambda)
+        probx1 &lt;- dpois(x1, lambda = lambda)
+        probx2 &lt;- dpois(x2, lambda = lambda)
+        
+        #Ãrea de plotagem
+        xlim &lt;- c(rmin, rmax)
+        ylim &lt;- c(min(probx), max(probx) + 0.2)
+        
+        #Ãrea de plotagem 
+        plot.new()
+        plot.window(xlim, ylim)
+        
+        #Eixos
+        axis(1)
+        axis(2)
+        
+        #TÃ­tulo e labels
+        title(ylab = expression(p[X](x)), xlab=&quot;X&quot;)
+        
+        
+        #Linhas e pontos da regiÃ£o desejada
+        lines (x1, probx1, type = &quot;h&quot;, panel.first = grid(), lwd = 2, col = &quot;red&quot;)
+        points(x1, probx1, lwd = 2, col = &quot;red&quot;, pch = 19)
+        
+        lines (x2, probx2, type = &quot;h&quot;, lwd = 2)
+        points(x2, probx2, lwd = 2, pch = 19)
+      
+        
+        abline(v=lambda, lty=2)
+        qq &lt;- round(q, digits=2)
+        qqaux &lt;-round(q, digits=2)
+        Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = T), rounding)
+        Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
+        qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
+        axis(side=1, at=qqaux, labels=qqaux,
+             col=&quot;red&quot;, font = 2)
+        abline(v = qqaux, lty=2, col = &quot;red&quot;)
+        legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
+               legend=substitute(P(X&lt;=q)==Pr~&quot;\n\n&quot;~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
       }
       
-    } else {
-      stop(&quot;Measure not used for this data type!&quot;, call. = FALSE,
-           domain = &quot;R-leem&quot;)
+      if (lower.tail) {
+        plotcurve &lt;- function(q, lambda) {
+          rmin &lt;- lambda - 4 * sqrt(lambda)
+          if (rmin &lt; 0) rmin &lt;- 0 else rmin &lt;- round(rmin)
+          rmax &lt;- ceiling(lambda + 4 * sqrt (lambda)) 
+          x &lt;- rmin:rmax
+          x1 &lt;- rmin:q
+          x2 &lt;- (q + 1):rmax
+          probx &lt;- dpois(x, lambda = lambda)
+          probx1 &lt;- dpois(x1, lambda = lambda)
+          probx2 &lt;- dpois(x2, lambda = lambda)
+          
+          #Ãrea de plotagem
+          xlim &lt;- c(rmin, rmax)
+          ylim &lt;- c(min(probx), max(probx) + 0.2)
+          
+          #Ãrea de plotagem 
+          plot.new()
+          plot.window(xlim, ylim)
+          
+          #Eixos
+          axis(1)
+          axis(2)
+          
+          #TÃ­tulo e labels
+          title(ylab = expression(p[X](x)), xlab=&quot;X&quot;)
+          
+          
+          #Linhas e pontos da regiÃ£o desejada
+          lines (x1, probx1, type = &quot;h&quot;, panel.first = grid(), lwd = 2)
+          points(x1, probx1, lwd = 2, pch = 19)
+          
+          lines (x2, probx2, type = &quot;h&quot;, lwd = 2, col = &quot;red&quot;)
+          points(x2, probx2, lwd = 2, col = &quot;red&quot;, pch = 19)
+          
+          
+          abline(v=lambda, lty=2)
+          qq &lt;- round(q, digits=2)
+          qqaux &lt;-round(q, digits=2)
+          Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = F), rounding)
+          Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
+          qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
+          axis(side=1, at=qqaux, labels=qqaux,
+               col=&quot;red&quot;, font = 2)
+          abline(v = qqaux, lty=2, col = &quot;red&quot;)
+          legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
+                 legend=substitute(P(X&lt;=q)==Pr~&quot;\n\n&quot;~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
+        }
+        
+      if (gui == &quot;plot&quot; ) {
+        # Probability
+        mu &lt;- argaddit$mean
+        sigma &lt;- argaddit$sd
+        prob &lt;- ppois(q = q, lambda = lambda)
+        # Plot
+        plotcurve(q, lambda)
+      }
+      if (gui == &quot;rstudio&quot;) {
+        manipulate::manipulate(plotcurve(qaux, muaux),
+                               qaux = manipulate::slider(-6, 6, q),
+                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
+      }
+      
+    } else{
+      plotcurve &lt;- function(q, lambda) {
+        curve(dpois(x, lambda = lambda), -6, 6, ylab = expression(f[T](t)), xlab=&quot;T&quot;)
+        x &lt;- seq(q, 6, by=0.01)
+        y &lt;- seq(-6, q, by=0.01)
+        fx &lt;- dpois(x, lambda = lambda)
+        fy &lt;- dpois(y, lambda = lambda)
+        polygon(c(x, rev(x)),
+                c(fx, rep(0, length(fx))),
+                col=&quot;red&quot;)
+        polygon(c(y, rev(y)),
+                c(fy, rep(0, length(fy))),
+                col=&quot;gray90&quot;)
+        abline(v=0, lty=2)
+        qq &lt;- round(q, digits=2)
+        qqaux &lt;-round(q, digits=2)
+        Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = F), digits=rounding)
+        Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
+        qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
+        axis(side=1, at=qqaux, labels=qqaux,
+             col=&quot;red&quot;, font = 2)
+        abline(v = qqaux, lty=2, col = &quot;red&quot;)
+        legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
+               legend=substitute(P(T~`&gt;`~q)==Pr~&quot;\n\n&quot;~lambda=lambda, list(q=qq, Pr=Pr, lambda = lambda)))
+      }
+      if (gui == &quot;plot&quot;) {
+        # Probability
+        lambda &lt;- argaddit$lambda
+        lambda &lt;- argaddit$lambda
+        prob &lt;- ppois(q = q, lambda = lambda)
+        # Plot
+        plotcurve(q,lambda = lambda)
+      }
+      if (gui == &quot;rstudio&quot;) {
+        manipulate::manipulate(plotcurve(qaux, lambdaaux),
+                               qaux = manipulate::slider(-6, 6, q),
+                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
+      }
+      
     }
   }
-  if (attr(x, &quot;variable&quot;) == &quot;continuous&quot;) {
-    if (grouped == TRUE) {
-      desvpad &lt;- sqrt((variance(x)))
-      resume &lt;- list(sdeviation = desvpad, table = x$tabela,
-                     rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      }
-      else {
-        return(desvpad)
-      }
-    } else {
-      desvpad &lt;- round(sd(x = x$estat$raw_data, na.rm = na.rm),
-                       digits = rounding)
-      resume &lt;- list(sdeviation = desvpad, table = x$tabela,
-                     rawdata = x$estat$raw_data)
-      if (details) {
-        return(resume)
-      }
-      else {
-        return(desvpad)
-      }
-    }
-  }
+  prob &lt;- round(prob, rounding)
+  if (porcentage == TRUE) prob &lt;- prob * 100
+  return(prob)
 }
+}
+
+
 </code></pre>
-<p>Para testar o funcionamento da função podemos utilizar:</p>
-<pre><code>set.seed(10)
-x &lt;- rnorm(36, 100, 50)
-x &lt;- new_leem(x, variable = 2)
-sdev(x)
-</code></pre>
-</div>
 </div>
 
 
