@@ -1,15 +1,12 @@
 # Distribuição Binomial
 
-p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4,
-  porcentage = FALSE, gui = "plot", ...) {
-    argaddit <- list(...)
-    argdef <- formals(p)
-    if (dist == "binomial") {
-      
-      if (!any(names(argaddit) == "size")) stop("Insira o argumento 'size'!", call. = FALSE)
-      if (!any(names(argaddit) == "prob")) stop("Insira o argumento 'prob'!", call. = FALSE)
-      
-      if (lower.tail) {
+p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4, porcentage = FALSE, gui = "plot", ...) {
+  argaddit$size <- list(...)
+  argdef <- formals(p)
+  if (dist == "binomial") {
+    if (!any(names(argaddit) == "size")) stop("Insira o argumento 'size'!", call. = FALSE)
+    if (!any(names(argaddit) == "prob")) stop("Insira o argumento 'prob'!", call. = FALSE)
+    if (lower.tail) {
         plotcurve <- function(q, size, prob){
           rmin <- size * prob - 4 * sqrt(size * prob*(1 - prob))
           if (rmin < 0) rmin < 0 else rmin <- round(rmin)
@@ -45,7 +42,7 @@ p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4,
           abline(v= size*prob, lty=2)
           qq <- round(q, digits=2)
           qqaux <- round(q, digits=2)
-          Pr <- round(pbinom(qq, size = size, prob = prob, lower.tail = T), rounding)
+          Pr <- round(pbinom(q, size = size, prob = prob, lower.tail = T), rounding)
           Pr <- gsub("\\.", ",", Pr)
           qq <- gsub("\\.", ",", qq)
           axis(side=1, at=qqaux, labels=qqaux,
@@ -54,23 +51,16 @@ p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4,
           legend("topleft", bty="n", fill="red",
                  legend=substitute(P(X<=q)==Pr~"\n\n"~size == n~p==prob , list(q=qq, Pr=Pr, n = size, prob = prob)))
         }
-        if (gui == "plot" ) {
-          # Probability
-          mu <- argaddit$mean
-          sigma <- argaddit$sd
-          prob <- pbinom(q = q, size = mu, prob = sigma)
-          # Plot
-          plotcurve(q, mu,sigma)
-        }
+
         if (gui == "rstudio") {
-          manipulate::manipulate(plotcurve(qaux, muaux),
-                                 qaux = manipulate::slider(-6, 6, q),
-                                 muaux = manipulate::slider(mu, mu + 200, mu))
+          manipulate::manipulate(plotcurve(size, prob),
+                                 size = manipulate::slider(-6, 6, q),
+                                 prob = manipulate::slider(mu, mu + 200, mu))
         }
         
       } else{
-        plotcurve <- function(q, size, prob) {
-          curve(dbinom(x, size = mu, prob =sigma), -6, 6, ylab = expression(f[T](t)), xlab="T")
+      plotcurve <- function(q, size, prob) {
+          curve(dbinom(x, size = , prob =sigma), -6, 6, ylab = expression(f[T](t)), xlab="T")
           x <- seq(q, 6, by=0.01)
           y <- seq(-6, q, by=0.01)
           fx <- dbinom(x, size = mu, prob = sigma)
@@ -91,20 +81,19 @@ p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4,
                col="red", font = 2)
           abline(v = qqaux, lty=2, col = "red")
           legend("topleft", bty="n", fill="red",
-                 legend=substitute(P(T~`>`~q)==Pr~"\n\n"~size==mu, list(q=qq, Pr=Pr, mu = mu)))
-        }
-        if (gui == "plot") {
+                 legend=substitute(P(X~`>`~q)==Pr~"\n\n"~size==mu, list(q=qq, Pr=Pr, mu = mu)))
+        }{
           # Probability
-          mu <- argaddit$mean
-          sigma <- argaddit$sd
+          size <- argaddit$size
+          prob <- argaddit$prob
           prob <- pbinom(q = q, size = mu, prob =sigma)
           # Plot
-          plotcurve(q, mu, sigma)
+          plotcurve(q, size, prob)
         }
         if (gui == "rstudio") {
-          manipulate::manipulate(plotcurve(qaux, muaux),
-                                 qaux = manipulate::slider(-6, 6, q),
-                                 muaux = manipulate::slider(mu, mu + 200, mu))
+          manipulate::manipulate(plotcurve(size, prob),
+                                 size = manipulate::slider(-6, 6, q),
+                                 prob = manipulate::slider(mu, mu + 200, mu))
         }
         
       }
