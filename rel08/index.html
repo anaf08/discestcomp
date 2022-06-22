@@ -353,7 +353,7 @@ pre code {
 <h1 class="title toc-ignore">Relatório 08 - Gráficos na estatística
 descritiva</h1>
 <h4 class="author">Ana Flavia Machado Muniz Andrade</h4>
-<h4 class="date">17/06/2022</h4>
+<h4 class="date">23/06/2022</h4>
 
 </div>
 
@@ -364,7 +364,17 @@ descritiva</h1>
 Objetivo</a></li>
 <li><a href="#apresentação-do-relatório"><span class="toc-section-number">2</span> Apresentação do relatório</a></li>
 <li><a href="#gráficos-na-estatística-descritiva"><span class="toc-section-number">3</span> Gráficos na estatística
-descritiva</a></li>
+descritiva</a>
+<ul>
+<li><a href="#stickplot"><span class="toc-section-number">3.1</span>
+Stickplot</a></li>
+<li><a href="#ogive"><span class="toc-section-number">3.2</span>
+Ogive</a></li>
+<li><a href="#polygon"><span class="toc-section-number">3.3</span>
+Polygon</a></li>
+<li><a href="#bar-plot"><span class="toc-section-number">3.4</span> Bar
+plot</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -372,188 +382,97 @@ descritiva</a></li>
 <div id="objetivo" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Objetivo</h1>
 <p>Descrever o processo de criação de gráficos da estatística descritiva
-com o comando leem</p>
+no pacote leem.</p>
 </div>
 <div id="apresentação-do-relatório" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Apresentação do
 relatório</h1>
+<p>Abaixo segue as características dos tipos de gráficos</p>
 </div>
 <div id="gráficos-na-estatística-descritiva" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Gráficos na estatística
 descritiva</h1>
-<pre><code>{r}
-
-# Distribuição Poisson 
-
-p &lt;- function(q, dist = &quot;poisson&quot;, lower.tail = TRUE, rounding = 4, porcentage = FALSE, gui = &quot;plot&quot;, ...) {
-  argaddit &lt;- list(...)
-  argdef &lt;- formals(p)
-  if (dist == &quot;poisson&quot;) {
-    
-    if (!any(names(argaddit) == &quot;lambda&quot;)) stop(&quot;Insira o argumento &#39;lambda&#39;!&quot;, call. = FALSE)
-    
-    
-    if (lower.tail) {
-      plotcurve &lt;- function(q, lambda) {
-        rmin &lt;- lambda - 4 * sqrt(lambda)
-        if (rmin &lt; 0) rmin &lt;- 0 else rmin &lt;- round(rmin)
-        rmax &lt;- ceiling(lambda + 4 * sqrt (lambda)) 
-        x &lt;- rmin:rmax
-        x1 &lt;- rmin:q
-        x2 &lt;- (q + 1):rmax
-        probx &lt;- dpois(x, lambda = lambda)
-        probx1 &lt;- dpois(x1, lambda = lambda)
-        probx2 &lt;- dpois(x2, lambda = lambda)
-        
-        #Ãrea de plotagem
-        xlim &lt;- c(rmin, rmax)
-        ylim &lt;- c(min(probx), max(probx) + 0.2)
-        
-        #Ãrea de plotagem 
-        plot.new()
-        plot.window(xlim, ylim)
-        
-        #Eixos
-        axis(1)
-        axis(2)
-        
-        #TÃ­tulo e labels
-        title(ylab = expression(p[X](x)), xlab=&quot;X&quot;)
-        
-        
-        #Linhas e pontos da regiÃ£o desejada
-        lines (x1, probx1, type = &quot;h&quot;, panel.first = grid(), lwd = 2, col = &quot;red&quot;)
-        points(x1, probx1, lwd = 2, col = &quot;red&quot;, pch = 19)
-        
-        lines (x2, probx2, type = &quot;h&quot;, lwd = 2)
-        points(x2, probx2, lwd = 2, pch = 19)
-      
-        
-        abline(v=lambda, lty=2)
-        qq &lt;- round(q, digits=2)
-        qqaux &lt;-round(q, digits=2)
-        Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = T), rounding)
-        Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
-        qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
-        axis(side=1, at=qqaux, labels=qqaux,
-             col=&quot;red&quot;, font = 2)
-        abline(v = qqaux, lty=2, col = &quot;red&quot;)
-        legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
-               legend=substitute(P(X&lt;=q)==Pr~&quot;\n\n&quot;~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
-      }
-      
-      if (lower.tail) {
-        plotcurve &lt;- function(q, lambda) {
-          rmin &lt;- lambda - 4 * sqrt(lambda)
-          if (rmin &lt; 0) rmin &lt;- 0 else rmin &lt;- round(rmin)
-          rmax &lt;- ceiling(lambda + 4 * sqrt (lambda)) 
-          x &lt;- rmin:rmax
-          x1 &lt;- rmin:q
-          x2 &lt;- (q + 1):rmax
-          probx &lt;- dpois(x, lambda = lambda)
-          probx1 &lt;- dpois(x1, lambda = lambda)
-          probx2 &lt;- dpois(x2, lambda = lambda)
-          
-          #Ãrea de plotagem
-          xlim &lt;- c(rmin, rmax)
-          ylim &lt;- c(min(probx), max(probx) + 0.2)
-          
-          #Ãrea de plotagem 
-          plot.new()
-          plot.window(xlim, ylim)
-          
-          #Eixos
-          axis(1)
-          axis(2)
-          
-          #TÃ­tulo e labels
-          title(ylab = expression(p[X](x)), xlab=&quot;X&quot;)
-          
-          
-          #Linhas e pontos da regiÃ£o desejada
-          lines (x1, probx1, type = &quot;h&quot;, panel.first = grid(), lwd = 2)
-          points(x1, probx1, lwd = 2, pch = 19)
-          
-          lines (x2, probx2, type = &quot;h&quot;, lwd = 2, col = &quot;red&quot;)
-          points(x2, probx2, lwd = 2, col = &quot;red&quot;, pch = 19)
-          
-          
-          abline(v=lambda, lty=2)
-          qq &lt;- round(q, digits=2)
-          qqaux &lt;-round(q, digits=2)
-          Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = F), rounding)
-          Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
-          qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
-          axis(side=1, at=qqaux, labels=qqaux,
-               col=&quot;red&quot;, font = 2)
-          abline(v = qqaux, lty=2, col = &quot;red&quot;)
-          legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
-                 legend=substitute(P(X&lt;=q)==Pr~&quot;\n\n&quot;~lambda==lambd, list(q=qq, Pr=Pr, lambd = lambda)))
-        }
-        
-      if (gui == &quot;plot&quot; ) {
-        # Probability
-        mu &lt;- argaddit$mean
-        sigma &lt;- argaddit$sd
-        prob &lt;- ppois(q = q, lambda = lambda)
-        # Plot
-        plotcurve(q, lambda)
-      }
-      if (gui == &quot;rstudio&quot;) {
-        manipulate::manipulate(plotcurve(qaux, muaux),
-                               qaux = manipulate::slider(-6, 6, q),
-                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
-      }
-      
-    } else{
-      plotcurve &lt;- function(q, lambda) {
-        curve(dpois(x, lambda = lambda), -6, 6, ylab = expression(f[T](t)), xlab=&quot;T&quot;)
-        x &lt;- seq(q, 6, by=0.01)
-        y &lt;- seq(-6, q, by=0.01)
-        fx &lt;- dpois(x, lambda = lambda)
-        fy &lt;- dpois(y, lambda = lambda)
-        polygon(c(x, rev(x)),
-                c(fx, rep(0, length(fx))),
-                col=&quot;red&quot;)
-        polygon(c(y, rev(y)),
-                c(fy, rep(0, length(fy))),
-                col=&quot;gray90&quot;)
-        abline(v=0, lty=2)
-        qq &lt;- round(q, digits=2)
-        qqaux &lt;-round(q, digits=2)
-        Pr &lt;- round(ppois(qq, lambda = lambda, lower.tail = F), digits=rounding)
-        Pr &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, Pr)
-        qq &lt;- gsub(&quot;\\.&quot;, &quot;,&quot;, qq)
-        axis(side=1, at=qqaux, labels=qqaux,
-             col=&quot;red&quot;, font = 2)
-        abline(v = qqaux, lty=2, col = &quot;red&quot;)
-        legend(&quot;topleft&quot;, bty=&quot;n&quot;, fill=&quot;red&quot;,
-               legend=substitute(P(T~`&gt;`~q)==Pr~&quot;\n\n&quot;~lambda=lambda, list(q=qq, Pr=Pr, lambda = lambda)))
-      }
-      if (gui == &quot;plot&quot;) {
-        # Probability
-        lambda &lt;- argaddit$lambda
-        lambda &lt;- argaddit$lambda
-        prob &lt;- ppois(q = q, lambda = lambda)
-        # Plot
-        plotcurve(q,lambda = lambda)
-      }
-      if (gui == &quot;rstudio&quot;) {
-        manipulate::manipulate(plotcurve(qaux, lambdaaux),
-                               qaux = manipulate::slider(-6, 6, q),
-                               muaux = manipulate::slider(lambda, lambda + 200, lambda))
-      }
-      
-    }
-  }
-  prob &lt;- round(prob, rounding)
-  if (porcentage == TRUE) prob &lt;- prob * 100
-  return(prob)
-}
-}
-
-
+<div id="stickplot" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Stickplot</h2>
+<center>
+<img src="data:image/png;base64,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" style="width:50.0%" />
+</center>
+<p>O gráfico apresentado é do tipo (?).</p>
+<p>Para que ele seja acessado no pacote leem, utiliza-se o comando
+abaixo:</p>
+<pre><code>y |&gt; new_leem(variable = &quot;discrete&quot;) |&gt; tabfreq() |&gt; stickplot()
 </code></pre>
+<p>Os argumentos usados nessa função são:</p>
+<ul>
+<li><code>X</code></li>
+<li><code>bg = TRUE</code></li>
+<li><code>main = NULL</code></li>
+<li><code>xlab = NULL</code></li>
+<li><code>ylab = NULL</code></li>
+<li><code>panel.first = grid(col=&quot;white&quot;)</code></li>
+<li><code>bgcol = &quot;gray&quot;</code></li>
+<li><code>bgborder = NA</code></li>
+<li><code>lcol = &quot;black&quot;</code></li>
+<li><code>pccol = lcol,pty = 19</code></li>
+<li><code>pwd = 3</code></li>
+<li><code>lty = 1</code></li>
+<li><code>lwd = 2</code></li>
+</ul>
+</div>
+<div id="ogive" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Ogive</h2>
+<center>
+<img src="data:image/png;base64,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" style="width:50.0%" />
+</center>
+<p>Ogive é um tipo de gráfico de histogramas, parecido com o de barras.
+Porém, o cálculo exigido é feito pela área do retângulo representado no
+gráfico e representa dados quantitativos. Esses dados são agrupados em
+classes de frequência, de modo que é possível distinguir a forma, o
+ponto central e a variação da distribuição dos mesmos, além de amplitude
+e simetrai da distribuição.</p>
+<p>No pacote leem, ele é acessado por tal comando:</p>
+<pre><code>y |&gt; new_leem(variable = &quot;discrete&quot;) |&gt; tabfreq() |&gt; ogive(bars = TRUE, decreasing = FALSE)
+</code></pre>
+<p>Abaixo segue os argumentos da função:</p>
+<ul>
+<li><code>X</code></li>
+</ul>
+</div>
+<div id="polygon" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Polygon</h2>
+<center>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeoAAAFlCAMAAAATVVsFAAAAk1BMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6ADo6AGY6OgA6Ojo6OmY6OpA6ZpA6ZrY6kLY6kNtmAABmADpmOgBmOjpmkJBmkLZmkNtmtrZmtv+QOgCQkGaQtpCQ29uQ2/+2ZgC2Zjq22/+2/7a2//++vr7bkDrbtpDb27bb/9vb////tmb/25D/27b//7b//9v///8DG6r6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAANsklEQVR4nO2dDXfbuBFFqXRjpdtPK912a7W1mk20W9Ox9P9/XQmClCglJAEQAGfw3j3HiSMjYwiXGIAUAVZnAkK1dgVILqgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmEAUH2sLH/8dPv6aV+9f1mnSqsApLraPN+8TtXFcVF9Z5aqi+NYvfvc/PV1Z7v1rz9V1e/+8WJV/29fPZgydVU9Na/8t6p+eD7Y8pdyTYDNf9qfrPkuloOj2hh7vvTxpj+3vbr7Yau3ecGk+R/bl67lLmlho9s1jurfdubv162x18h7tKqbfzfd+W1nOnfTtR9eTofqrpz584dP3feKgVA9GKsP117cqj7tO8lPXdc22pu/BuVMgOanjfyHtd/KIpBUNwm4n4qZZG6/P1qxfUI/Dw6DrlyX+W3PVwyO6s2fP119mW5sdZoM3rz6eP2ZUT0sR9Vq6Kdlhm97tcng1iV7tXqGqr8Zq1ubP14df3+spmod3Ki+n4G3r3Rz6/EZOFXr4Eb1/Xl1m7e7AuPn1VStg1vV9irYz+fr2Gw6s/2RuVr2p0/Dq2U/2wBUXQb2pPrKodBL41T99W99r29G6b8UcKlkDHTVTVq+XPCsy7jWPQZVV5u/9v/4+tO2u9RSIuiqgaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGKgahsiqv9xw989IwEe9DUrVBUeVqJpkgKphkKFaUVLUFFViAlfUfJqiSlRNMkDVMMhQrSgpaooqMYEraj5NUSWqJhmgahhkqFaUFDVFlZjAFTWfpqgSVZMMUDUMMlQrSoqaokpM4IqaT1NUiapJBqgaBhmqFSVFTVElJnBFzacpqkTVJANUDYMM1YqSoqaoEhO4oubTFFWiapKBJKrfduaBVOZpVDdPHqTqVUmn+mieIvi2e/p+kbtapHlv6FEzJHCjupN8HHlsZIY3yqiZVL9uW9X1SApP8c7IJMlUe/VqkoFEqs3DQR/O/QRtVvXKSbF9lmn0qF5oTeDW9ua5mYSPmBaluntubeSofihWPUeKdxaKn2q1ZFZd9RjZQr76Kq1dj9RfmVVfw90ecGkOY8dyTOBUvSiqH1pV2xm4ZeS8WtTICDFUJ+rVp/3oxW+JqjFIo7px/eCjWlFS1BQ1z1hdVyOfc1B1vqgSp2VCKHvApuoBVJ1e9apJcSDYxTUTeCGq511T9SLVqzLUW/L5NVXfyqXqghP4ndxZ10zgVL0IGNUrUnDGvgNeNQ4yVCtKipqiLk3gb7tq5qMMqhYSdflYfWzOPsduDwxTTTIQojqGbarOTqBqK3vu/gNn1fKS4vjEXF5dHYOGqTaLLJ/Op/3I0g2q9kamanPnmHU8tiDLW/VaTJxUl3e+7a/6bbd5DhWsSrWMKsbDX3UcZCTwKZ1jrpES+PnQpO/x1ViKVE93XKpuTZs8vuhCiojsOJOjC0vh/qr7PS8WzMmoeg38VZ/2NnUfI6peJymGqURK4Mf2Fu/XbcSrZVQtU3VjuZmdLjzjEpAbC8vPs4SojgFYM0tAhmpFSVFT1MUJ/LSfXE5L1WKiLj+vXuT4u6olU8yQ7q96dH8qqpZNiOrp5bQhqkUnxUpRXaeC+queXSVvC82M54qa7+5zD9F1nQrqr3p2lfzZXGV57MuOZPu1s6JPWi7k80x/1Zc9bcZnZ/210/P4HqNrN56XPVTVDgyG87EPRdZO4H72hqWREvg83r06e/N59lNY1U0Kf/9ymDrlOvbDudSxuoyU7EeA6nrz3PTV6dPrfkAfvaWUqrPjr9pkZ5OWNX9evcQ0UAI3cy6jOugulJGdg8+Zd9FdsnNx7rpG+/JX3ffqQ/j9/ueVEzhi+l4wVh/nL6SIVY1JgGo755q6C8V752BF45+mqBnOq713DlbUfJqi5lDtu3MwyYC/aodr4GffnYP1oHiXeH/Vvctl96IoTeDJHt4jOoEfIi7koWrRqrUu5FkiqkqmOgPhqmNeGM3JIlGQqqOuxMyZwKOpjipdZAKf/dBKtuqFdgZ+q5jpXKTqOKyWA+NmX03pnKph8FftcIHbW3W+BL7c9GhdF/VwmQncXgiL+slWOaoHur3Ui1R92lvHYzcIhqjORur0/e2sLe3v88Ff9dtH+/Gl1ksouShAdd+rY96FoubCqHtUzzMxkQnc3IXS/HlctkNG8aolPBV7+Xl1OwdfdgWFCTw/IapjIKgJUiHMtBDVJSZwAVGjJPCZhTxULSJqjGnZ7EIeT9WZEJVPs+OvOsVCnkysolrM8eWvetFCnhHVmZJilFb3ravbLxWZwFMs5MmjeqVPlp1+rUjVehfyrJRKpZxyBaieX8hD1Xe/V4TrENUxWCGBR2rwgLo6/GaRCXyw0QlVOzL/q0WqTrEbYQ7WzKIiMri/6qVLeNZSDY+/arfleX6qFV1s1BRV4s3BippPU1SJqkkGPFXHmZNR9RqEqI5xusUEniHqogRO1UuiTpxzwahOjogT25VrQdU5WbUaMlQnT7UR23hJXcc/+NCawO3NSPXUZZa8qmP2pkV1HXUtUbXLMsxWdbuma/TkLG8mE5K/v6xaE0/VbhjVnWQZz+6Qo3rFqiRT/bptVd99NnJJCVk3Xm6aN168hXWNWhevr2SqvXp14rE6ak8Sd7buGjSRatNxH84TT1XMmcYEpe81SaLa2t48jz+lhdfA85NK9Wy421qkeW/oUSV+iKmo+TRFlaiaZICq12GFqaIM1YqSYqSo96phErhkKYmi5ngAukTVCZF6Up1/dQ9Vr0V21zJUJ0y10Rs0Wl1vagaTwNOpjt914tU1+VOxJapOh9j8/SV73agaBhmqkyXwBKZFn8JNBaXqgKgJgFGdCqbvAWWrJgNkqFaUFDVFlZjAFTWfpqgSVZMMUDUMMlSnSF+pdl5XVFeJCTxB8yV7noKiukpUnQBxj86YIE9dS1Ud8ym0qclUVxmqFSVFTXWVmMAVNZ+mukpUnQI1+ftLprqWplqP3u+T0LkM1bGS4m3vUHQJ8xI1aiqXmMBj3UZfpb81L8cWPbFsS1QdA01j8wyJ5pMlqY4esyhkqFaaaqVHlZjAFTWfpqgSVYdTetqOOR9XrbqgqdgIEU++ZKgOS19zraAo1U5FDbctMYGHNN98AxSiOjyLS1QdQumpOzqJVJ/2M1vOBmoqf3CeI7wF0qg+9lvTje5RF5bA/T7tKyaBD/BqgQwJfLBheNw9RqlamurBLuBuOwc7fl3+c8D/LePrcm+SlJ2DHXq13zEfdEwXyYIWSKL6fHlk/ehYfVeLJG+UCfz2X0lUXx78MNKnQ1X7zT9LVO3VAjLOq32agUSBqmGQobrIVLt+VBkJPJjKHZ+ymqImb+LUv8ARj3qwaBhUrbBoGFStsGgYVK2waBhUrbBoGFStsGgYVK2waBhUrbBoGFStsGgYUlST5FA1DFQNA1XDQNUwUDUMVA0DVcNA1TBQNQxUDQNVw0DVMEhQbZcHPTiVfd06lqy7W26f5ouaxWiOBduim2eXgq+//9zVY7Z8V3TwTQokqH794NR2hvr9S3NkuB0V57Nr0WMjo3ZzfWiKvm4dir7t2nXJtQk947orOvgmCRJU185v0C77PTqXdyt52psD4uByVLzt2gqMLk+8UNtdRGyFp0PX/YYj9cTOIxGQoPro3Es9+n9bfDuyNvgWD9W2g85103ZVcnsA2wQwecT1Ra/fJEKC6sMfmqHSSUr97pedY9E2sGPLuSfwTrVLWau6PTbnDF5+Xrrqt53JhwcXgUeT4WwndArselC4zJ1aul7qrNotC8Cotji9y+PGpZNcQrrps73fMdnbaRlVL8FpWmsHPaeiDYf52dPgVztO9g7N3OmXjw7HEBP4GE4zLtsUjpMz5/ztOte64HT66zotOwOpts3h9C7tdlqODeLa+X0qYHE42eriuZxsAam2LeE0LWsbebCn1iTu3dR9rG6vybgFrp0voQCpNuOf63XJ2vW8zOdKS1sBt6jmIq7bIdRpc7mQCqSa5ICqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGPBUt1tnOa68Lgo41e3mFqd9ynVwQkFT3S26dt5PpSDQVPebZhyfzm8f/2V20emW8bar9Js/Xj/8e2tX4JqND13XAmsATPVwGb7dWclsTGUWyF9Umz1tzItt/3fco1AFYKrtDhv994+9+3rzfFXd7TeYdFn7GkCqNpskvPvcfm/H7ubPq+p2YxTjvjDXcKq7BF7fqG6+vY7V/XZHpz3Has3007J6tFd/GO5sdXDf4Uo8aKr7Ha561YOx+rH9qR2r+yNiOLZrB031+dieSB2qh34TtG4Gftq/f2lSdqO621u27dge+9aJB061vTBqZlxdj+23xzKv/9NMy/6+tUO0+UFBpgFVz+C8h6E6qPoOqoaBqol6qBoGqoaBqmGgahioGgaqhoGqYaBqGKgaBqqGgaphoGoYqBoGqoaBqmGgahioGgaqhoGqYaBqGP4PXvZySo6erIgAAAAASUVORK5CYII=" style="width:50.0%" />
+</center>
+<p>Polygon é o tipo de gráfico representado por segmentos ou linhas,
+utilizado para mostrar o progresso de valores de uma variável no
+transcorrer do tempo. São indicados para representar sequências de dados
+em uma escala de tempo dividida em períodos iguais.</p>
+<p>Seu comando é:</p>
+<pre><code>y |&gt; new_leem(variable = &quot;discrete&quot;) |&gt; tabfreq() |&gt; polyfreq(bars=FALSE)
+</code></pre>
+<p>Os argumentos utilizados são:</p>
+<ul>
+<li><code>X</code></li>
+</ul>
+</div>
+<div id="bar-plot" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Bar plot</h2>
+<center>
+<img src="data:image/png;base64,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" style="width:50.0%" />
+</center>
+<p>Também conhecido como gráfico de colunas, ele aponta barras em
+tamanhos proporcionais aos valores que as representam. Além disso,
+demonstram dados de uma tabela de frequências referentes à uma variável
+qualitativa. Cada barra retangular mostra a frequência ou a frequência
+relativa da respectiva opção da variável.</p>
+<p>O comando aplicado ao gráfico é:</p>
+<pre><code>y |&gt; new_leem(variable = &quot;discrete&quot;) |&gt; tabfreq() |&gt; hist()
+</code></pre>
+<p>Para a função, utilizamos os seguintes argumentos:</p>
+<ul>
+<li><code>X</code></li>
+</ul>
+</div>
 </div>
 
 

@@ -82,11 +82,12 @@ p <- function(q, dist = "binomial", lower.tail = TRUE, rounding = 4, porcentage 
           abline(v = qqaux, lty=2, col = "red")
           legend("topleft", bty="n", fill="red",
                  legend=substitute(P(X~`>`~q)==Pr~"\n\n"~size==mu, list(q=qq, Pr=Pr, mu = mu)))
-        }{
+      }
+      if (gui == "plot")
           # Probability
           size <- argaddit$size
-          prob <- argaddit$prob
-          prob <- pbinom(q = q, size = mu, prob =sigma)
+          sucesso <- argaddit$prob
+          prob <- pbinom(q = q,  = mu, prob =sigma)
           # Plot
           plotcurve(q, size, prob)
         }
